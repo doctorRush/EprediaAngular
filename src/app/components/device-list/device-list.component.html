@@ -1,0 +1,18 @@
+<div *ngIf='devices && devices.length'>
+
+   
+        <div  class="border" *ngFor="let device of devices" (click)="navigateToDevice(device.Id)">
+            <span class="thumbnail text-left">
+            
+            <div class="caption" >
+                <div>Device Name :{{device.deviceName}}   </div>
+                <div>Serial Number :{{device.serialNumber}}   </div>
+                <div>Software Version :{{device.firmwareVersion}}   </div>
+                <div>Firmware Version :{{device.softwareVersion}}   </div>
+            </div>
+        </span>
+        </div>
+        
+       
+    
+</div>
