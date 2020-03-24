@@ -8,9 +8,10 @@ export const deviceReducers = (
 ): IDeviceState => {
   switch (action.type) {
     case EDeviceActions.GetDevice: {
-        return {
-          ...state
-        }}
+      return {
+        ...state
+      }
+    }
     case EDeviceActions.GetDevicesSuccess: {
       return {
         ...state,
@@ -24,6 +25,24 @@ export const deviceReducers = (
       };
     }
 
+    case EDeviceActions.GetDeviceMetadata: {
+      return {
+        ...state
+      }
+    }
+
+    case EDeviceActions.GetDeviceMetadaSuccess: {
+      return {
+        ...state,
+        deviceMetadata: action.payload
+      }
+    }
+    case EDeviceActions.GetDeviceEventsSuccess: {
+      return {
+        ...state,
+        deviceEvents: action.payload
+      }
+    }
     default:
       return state;
   }

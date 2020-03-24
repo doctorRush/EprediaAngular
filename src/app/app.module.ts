@@ -20,29 +20,27 @@ import { DeviceListComponent } from './components/device-list/device-list.compon
 import { DeviceService } from './services/device.service';
 import { DeviceDetailsComponent } from './components/device-details/device-details.component';
 
-import { DevicesComponent as DevicesContainerComponent } from './containers/devices/devices/devices.component';
+import { DevicesComponent } from './containers/devices/devices/devices.component';
 
 import { DeviceComponent } from './containers/device/device/device.component';
-
+import { DeviceMetadataComponent } from './components/device-metadata/device-metadata.component';
+import { DeviceEventsComponent } from './components/device-events/device-events.component';
 
 @NgModule({
   declarations: [
     AppComponent,
- 
     MainComponent,
- 
     DeviceListComponent,
-    DevicesContainerComponent,
-    
+    DeviceDetailsComponent,
+    DevicesComponent,
     DeviceComponent,
-    DeviceDetailsComponent
-  
- 
-    
+    DeviceMetadataComponent,
+    DeviceEventsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, HttpClientModule,
+
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([DeviceEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
