@@ -1,0 +1,21 @@
+.device {
+    float:left;
+    margin: 5px 0;
+    padding: 5px 0;
+    width: 100%;
+cursor: pointer;
+-webkit-box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27);
+-moz-box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27);
+box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27)
+}
+
+.device:hover{
+  background: #bbbbe2;
+  color: #FFFFFF;
+}
+.device.active {
+  background: #a2a2d2;
+  color: #FFFFFF;
+
+}
+

@@ -1,0 +1,32 @@
+
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Event Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Commercial Region</th>
+        <th scope="col">Service Region</th>
+        <th scope="col">Error Code</th>
+        <th scope="col">Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of eventList" id="deviceEvent"
+       >
+        <td>{{ data.eventParameters.event_type || '-' }}</td>
+        <td>{{ data.eventParameters.description  || '-' }}</td>
+        <td>{{ data.eventParameters.commercial_region || '-' }}</td>
+        <td>{{ data.eventParameters.service_region || '-' }}</td>
+        <td>{{ data.eventParameters.error_code  || '-' }}</td>
+        <td>{{ data.timestamp  | date:'medium' || '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card m-3 p-3" *ngIf="eventList.length==0">
+    <div> Events Not Available</div>
+  
+    </div>
+  
+  

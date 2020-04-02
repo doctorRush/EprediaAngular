@@ -1,0 +1,29 @@
+{
+	"devices": [{
+			"_id": "5e69dea789aa3b3f8c54c7bf",
+			"serialNumber": "RS10111710",
+			"deviceName": "Fumelyo(RS10111710)",
+			"softwareVersion": "1.0.0",
+			"firmwareVersion": "1.0.2 build 122",
+			"status": "Unknown"
+		},
+		{
+			"_id": "5e69dea789aa3b3f8c54c7c0",
+			"serialNumber": "RS000000016",
+			"deviceName": "PDA",
+			"softwareVersion": "1.0.4",
+			"firmwareVersion": "1.0.2 build 124",
+			"status": "Unknown"
+		},
+		{
+			"_id": "5e69dea789aa3b3f8c54c7c1",
+			"serialNumber": "RS0000000710",
+			"deviceName": "RS0000000710",
+			"softwareVersion": "-----",
+			"firmwareVersion": "NIOS 1.1.1-FPGA",
+			"status": "Available"
+		}
+	]
+
+
+}

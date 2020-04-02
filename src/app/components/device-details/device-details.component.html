@@ -1,0 +1,12 @@
+
+<div class="container" *ngIf="device" id="deviceDetails">
+  <div class="card m-3 p-3">
+
+    <div>Device Id :{{device._id}}   </div>
+    <div>Device Name :{{device.deviceName}}   </div>
+    <div>Serial Number :{{device.serialNumber}}   </div>
+    <div>Software Version :{{device.firmwareVersion}}   </div>
+    <div>Firmware Version :{{device.softwareVersion}}   </div>
+    <div>Status :{{device.status}}   </div>
+  </div>
+</div>
