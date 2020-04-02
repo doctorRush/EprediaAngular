@@ -1,15 +1,16 @@
+import { MainComponent } from './components/main.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-
-
-import { DevicesComponent } from './containers/devices/devices/devices.component';
 import { DeviceComponent } from './containers/device/device/device.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: 'devices', component: DevicesComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'devices', component: MainComponent
+  },
   { path: 'device/:id', component: DeviceComponent },
-  { path: '', redirectTo: '/devices', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

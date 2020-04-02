@@ -1,0 +1,70 @@
+.container-fluid-bg {
+    height:40em; 
+    background-size:cover;
+    width:auto;
+    background-image:url('/assets/backg3.jpg');
+    background-position:50% 50%;
+}
+  
+img{
+    height: 50px;
+    width:100px;
+}
+.center{
+    text-align: center;
+}
+
+.navbar {
+    background-color: black;
+    height: 80px;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    min-width: 400px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: fixed;
+  }
+  h4{
+      margin-top:3%;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+  .image-style{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-left: 90px;
+    margin-top:30px;
+  }

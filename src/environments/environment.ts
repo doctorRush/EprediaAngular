@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+   username: 'naman',
+  hubUrl: 'https://epredia-azure-functions-epredia.azurewebsites.net/api/',  dataListenerKey: 'ChatHub '
 };
 
 /*
