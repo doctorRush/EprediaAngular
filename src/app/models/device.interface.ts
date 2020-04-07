@@ -1,9 +1,8 @@
 export interface IDevice {
-    
-Id: number,
+
+_id: number,
 deviceName: string,
 serialNumber: string,
 firmwareVersion: string,
 softwareVersion: string,
   }
-  

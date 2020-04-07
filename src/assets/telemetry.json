@@ -1,0 +1,69 @@
+{
+    "deviceTelemetry": {
+        "messages": [
+            {
+                "deviceInfo": {
+                    "deviceId": "revos-asia-device1000",
+                    "request": "senddata",
+                    "data_type": "telemetry",
+                },
+                "power": {
+                    "pressure_chamber": 1000.0,
+                    "specific_gravity": 36.0,
+                    "specific_gravity_colour": 20.0,
+                    "protocol_step_index": 1.0,
+                    "protocol_time_remaining": 2.0,
+                    "temprature_chamber_base_0": 0.0,
+                    "temprature_chamber_base_1": 0.0,
+                    "temprature_chamber_base_2": 0.0,
+                    "temprature_chamber_base_3": 0.0,
+                    "temprature_chamber_base_4": 0.0,
+                    "temprature_chamber_base_5": 0.0,
+                    "temprature_chamber_fluid_2": 0.0,
+                    "temprature_chamber_fluid_3": 0.0,
+                    "temprature_chamber_level_2": 0.0,
+                    "temprature_chamber_level_3": 0.0,
+                    "temprature_valve": 0.0,
+                    "temprature_waxbath_base_1": 0.0,
+                    "temprature_waxbath_base_2": 0.0,
+                    "temprature_waxbath_base_3": 0.0,
+                    "temprature_waxbath_fluid_1": 0.0,
+                    "temprature_waxbath_fluid_2": 0.0,
+                    "temprature_waxbath_fluid_3": 0.0,
+                    "temprature_waxbath_level_1": 0.0,
+                    "temprature_waxbath_level_2": 0.0,
+                    "temprature_waxbath_level_3": 0.0,
+                    "temprature_waxpipe_1": 0.0,
+                    "temprature_waxpipe_2": 0.0,
+                    "temprature_waxpipe_3": 0.0,
+                    "temprature_reagent_alcohol": 0.0,
+                    "temprature_reagent_xylene": 0.0,
+                    "chamber_fluid_level": 67.0,
+                    "chamber_level_sensor_1": 1.0,
+                    "chamber_level_sensor_2": 1.0,
+                    "chamber_level_sensor_3": 0.0,
+                    "valve_position": 0.0
+                },
+                "voltage": {
+                    "power_rail_1V1": 999.0,
+                    "power_rail_2V5": 2499.0,
+                    "power_rail_3V3": 3309.0,
+                    "power_rail_3V3_filtered": 3245.0,
+                    "power_rail_5V": 5022.0,
+                    "power_rail_12V": 12074.0,
+                    "power_rail_12V_filtered": 11954.0,
+                    "power_rail_24V": 24176.0,
+                    "power_rail_48V_electronics_wax": 48018.0,
+                    "battery_1_voltage": 417.0,
+                    "battery_2_voltage": 322.0,
+                    "battery_3_voltage": 531.0,
+                    "battery_4_voltage": 417.0,
+                    "battery_1_current": 5.0,
+                    "battery_2_current": 3.0,
+                    "battery_3_current": 4.0,
+                    "battery_4_current": 5.0
+                }
+            }
+        ]
+    }
+}

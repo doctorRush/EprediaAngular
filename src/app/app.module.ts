@@ -20,36 +20,64 @@ import { DeviceListComponent } from './components/device-list/device-list.compon
 import { DeviceService } from './services/device.service';
 import { DeviceDetailsComponent } from './components/device-details/device-details.component';
 
-import { DevicesComponent as DevicesContainerComponent } from './containers/devices/devices/devices.component';
+import { DevicesComponent } from './containers/devices/devices/devices.component';
 
 import { DeviceComponent } from './containers/device/device/device.component';
-
+import { DeviceMetadataComponent } from './components/device-metadata/device-metadata.component';
+import { DeviceEventsComponent } from './components/device-events/device-events.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { LoginComponent } from './components/login/login.component';
+import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
- 
     MainComponent,
- 
     DeviceListComponent,
-    DevicesContainerComponent,
-    
+    DeviceDetailsComponent,
+    DevicesComponent,
     DeviceComponent,
-    DeviceDetailsComponent
-  
- 
-    
+    DeviceMetadataComponent,
+    DeviceEventsComponent,
+    ChartComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, HttpClientModule,
+
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([DeviceEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    AppRoutingModule
+    AppRoutingModule,
+    MsalModule.forRoot({
+      auth: {
+        clientId: 'cc288e39-e236-426b-8003-9b77343bbe15',
+        authority: 'https://revosb2c.b2clogin.com/revosb2c.onmicrosoft.com/b2c_1_firstflow',
+        redirectUri: 'http://localhost:4200/devices',
+        validateAuthority: false,
+        navigateToLoginRequestUrl: false,
+      },
+      cache: {
+        cacheLocation: 'sessionStorage',
+      },
+    },
+     {
+       consentScopes: [
+        'user.read',
+         'openid',
+        'profile',
+      ],
+       unprotectedResources: [],
+      protectedResourceMap: [
+         ['', ['user.read']]
+     ],
+      extraQueryParameters: {}
+     }
+    )
   ],
   providers: [DeviceService],
-  bootstrap: [MainComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
