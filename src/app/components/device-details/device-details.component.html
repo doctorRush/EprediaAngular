@@ -2,23 +2,11 @@
 <div class="container" *ngIf="device" id="deviceDetails">
   <div class="card m-3 p-3">
 
-    <div>Device Id :{{device._id}}   </div>
-    <div>Device Name :{{device.deviceName}}   </div>
-    <div>Serial Number :{{device.serialNumber}}   </div>
-    <div>Firmware Version :{{device.firmwareVersion}}   </div>
-    <div>Software Version :{{device.softwareVersion}}   </div>
-    <div>Status :{{device.status}}   </div>
-  </div>
-</div>
-
-<div class="container" *ngIf="device.length==0" id="deviceDetails">
-  <div class="card m-3 p-3">
-
-    <div>Device Id :- </div>
-    <div>Device Name :-  </div>
-    <div>Serial Number :- </div>
-    <div>Firmware Version :-  </div>
-    <div>Software Version :-   </div>
-    <div>Status :-  </div>
+    <div>{{'HOME.DEVICE_ID' | translate}} :{{device._id}}   </div>
+    <div>{{'HOME.DEVICE_NAME' | translate }} :{{device.deviceName}}   </div>
+    <div>{{'HOME.SERIAL_NUMBER' | translate}} :{{device.serialNumber}}   </div>
+    <div>{{'HOME.SOFTWARE_VERSION' | translate}} :{{device.firmwareVersion}}   </div>
+    <div>{{'HOME.FIRM_VERSION' | translate}} :{{device.softwareVersion}}   </div>
+    <div>{{'HOME.STATUS' | translate}} :{{device.status}}   </div>
   </div>
 </div>

@@ -1,0 +1,29 @@
+{
+    "HOME": {
+      "TITLE1": "Epredia Revos",
+      "TITLE2": "Manage users",
+      "TITLE3": "More info",
+      "TITLE4": "Disconnect",
+      "TITLE5": "Make favourite",
+      "TITLE6": "Change Language",
+      "DEVICE_NAME": "Device Name",
+      "SEARCH": "Search",
+      "DEVICE_ID": "Device Id",
+      "SERIAL_NUMBER":"Serial Number",
+      "SOFTWARE_VERSION":"Software Version",
+      "FIRM_VERSION":"Firmware Version",
+      "STATUS": "Status",
+      "REQ_TYPE": "Request Type",
+      "CHAMBER_STATUS": "Chamber Status",
+      "PROTOCOL_NAME": "Protocol Name",
+      "REAGENT_NAME":  "Reagent Name",
+      "TIMESTAMP":  "TimeStamp",
+      "EVENT": "Event",
+      "EVENT_TYPE": "Event Type",
+      "DESCRIPTION": "Description",
+      "COMMERCIAL_REGION": "Commercial Region",
+      "SERVICE_REGION": "Service Region",
+      "ERROR_CODE": "Error Code",
+      "EVENT_NOT_AVAL":"Events Not Available"
+    }
+  }

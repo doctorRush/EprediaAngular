@@ -1,7 +1,7 @@
 import { selectDeviceList, selectSelectedDevice } from './../../store/selectors/device.selector';
 import { IAppState } from './../../store/state/app.state';
 import { Component, OnInit, Input } from '@angular/core';
-
+import { TranslateService } from '@ngx-translate/core';
 import { IDevice } from '../../models/device.interface';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ export class DeviceDetailsComponent implements OnInit {
   @Input()
   device: IDevice;
 
-  constructor(private _store: Store<IAppState>, private _router: Router) { }
+  constructor(public translate: TranslateService,private _store: Store<IAppState>, private _router: Router) { }
 
   ngOnInit() {
     this._store.select(selectSelectedDevice).subscribe(res => {

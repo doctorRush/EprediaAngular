@@ -7,6 +7,7 @@ export interface DeviceTelemetry {
     deviceId: string;
     request: string;
     data_type: string;
+    timestamp:string;
     pressure_chamber ?: number;
     specific_gravity ?: number;
     specific_gravity_colour ?: number;

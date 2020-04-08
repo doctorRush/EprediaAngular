@@ -2,3 +2,79 @@
 <div [chart]="chart"></div> -->
 
 
+
+<div class="container" *ngIf="show" >
+    <div class="card">
+    <div class="row m-3">
+       <div class="col-5">
+          <select class="custom-select" (change)="updateChartSeries($event)">
+             <option value="pressure_chamber" selected> Pressure Chamber</option>
+             <option value="specific_gravity"> Specific Gravity</option>
+             <option value="battery_1_current">Battery 1 Current</option>
+             <option value="battery_1_voltage">Battery 1 Voltage</option>
+             <option value="power_rail_1v1">Power rail 1v1</option>
+          </select>
+       </div>
+       <div class="col-7">
+          <div class="col-12">
+             <form #timeRange="ngForm" >
+                <div class="row">
+                   <div class="col-1">
+
+                      <label >from</label>
+                   </div>
+                  <div class="col-4 p-0">
+                    <input name="from" [(ngModel)]="from" type="date" class="form-control" placeholder="">
+                  </div>
+                  <div class="col-1">
+                   <label >To</label>
+
+                  </div>
+                  <div class="col-4 p-0">
+                    <input name="to" type="date" [(ngModel)]="to" class="form-control" placeholder="">
+                  </div>
+                  <div class="col-2">
+                     <button class="btn-sm btn-primary" type="button" (click)="selectRange(timeRange.value)">Select</button>
+
+                  </div>
+                </div>
+
+              </form>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+
+       <div class="col-6 pr-0">
+
+          <div class="card m-2">
+
+          <highcharts-chart
+             [Highcharts] = "highcharts"
+             [options] = "chartOptions"
+             [(update)]= "updateFlag">
+          </highcharts-chart>
+       </div>
+
+       </div>
+       <div class="col-6 pl-0">
+          <div class="row">
+             <div class="col-12">
+                <div class="card m-2">
+
+                   <highcharts-chart
+                   [Highcharts] = "highcharts"
+                   [options] = "rangeChartOptions"
+                   [(update)]= "updateFlag">
+                </highcharts-chart>
+             </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+
+ </div>
+ </div>
+
+ <!--  -->

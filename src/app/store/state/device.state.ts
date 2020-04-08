@@ -1,3 +1,4 @@
+import { DeviceTelemetry } from './../../models/device-telemetry';
 import { IDeviceEvents } from './../../models/deviceEvents.interface';
 import { IDevice } from '../../models/device.interface';
 
@@ -6,11 +7,13 @@ export interface IDeviceState {
   selectedDevice: IDevice;
   deviceMetadata: any;
   deviceEvents:IDeviceEvents[];
+  deviceTelemetry: DeviceTelemetry[];
 }
 
 export const initialDeviceState: IDeviceState = {
   devices: null,
   selectedDevice: null,
   deviceMetadata: null,
-  deviceEvents: []
+  deviceEvents: [],
+  deviceTelemetry: []
 };

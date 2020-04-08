@@ -64,6 +64,21 @@ export const deviceReducers = (
         deviceEvents: data
       }
     }
+    case EDeviceActions.UpdateDeviceTelemetrySuccess: {
+
+      const data = [... state.deviceTelemetry, ...action.payload];
+
+      return {
+        ...state,
+        deviceTelemetry: data
+      }
+    }
+    case EDeviceActions.GetDeviceTelemetrySuccess: {
+      return {
+        ...state,
+        deviceTelemetry: action.payload
+      }
+    }
 
     default:
       return state;

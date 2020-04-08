@@ -1,22 +1,12 @@
-<div class="container" *ngIf="devicemetadata"  >
+<div class="container"  >
   <div class="card m-3 p-3" *ngFor="let metadata of devicemetadata" id="deviceMetaData">
-   
-    <div>Request Type : {{ metadata.request }}</div>
-    <div> Chamber Status : {{ metadata.chamber_status }}</div>
-    <div>Protocol Name : {{ metadata.protocol_name || '-' }}</div>
-    <div>Reagent Name : {{ metadata.reagent_name || '-' }}</div>
-    <div>TimeStamp : {{ metadata.date | date:'medium' }}</div>
+
+
+
+    <div>{{ 'HOME.REQ_TYPE' | translate}} : {{ metadata.request }}</div>
+    <div>{{ 'HOME.CHAMBER_STATUS' | translate}} : {{ metadata.chamber_status }}</div>
+    <div>{{ 'HOME.PROTOCOL_NAME' | translate}} : {{ metadata.protocol_name || '-' }}</div>
+    <div>{{ 'HOME.REAGENT_NAME' | translate}} : {{ metadata.reagent_name || '-' }}</div>
+    <div>{{ 'HOME.TIMESTAMP' | translate}}: {{ metadata.date | date:'medium' }}</div>
 
   </div>
-
-</div>
-
-<div class="card m-3 p-3" *ngIf="!devicemetadata || devicemetadata.length == 0" id="deviceData">
-   
-  <div>Request Type : -</div>
-  <div> Chamber Status : -</div>
-  <div>Protocol Name : -</div>
-  <div>Reagent Name : -</div>
-  <div>TimeStamp : -</div>
-
-</div>

@@ -18,6 +18,9 @@ export enum EDeviceActions {
   GetDeviceEventsSuccess = '[ Device Events ] Get device Events success',
   GetDeviceTelemetry = '[Device Telemetry] Get device telemetry for last hour',
   GetDeviceTelemetrySuccess = '[Device Telemetry] Get device telemetry for last hour success',
+  UpdateDeviceTelemetry = '[Device telemetry update] update device telemetry',
+  UpdateDeviceTelemetrySuccess = '[Device telemetry update success] update device telemetry',
+  UpdateDeviceTelemetryFail = '[Device Telemetry Fail] update device telemetry fail',
   GetDeviceTelemetrByDuration = '[Device Telemetry] Get device telemetry by Duration',
   GetDeviceTelemetrByDurationSuccess = '[Device Telemetry] Get device telemetry by Duration success',
 
@@ -27,6 +30,7 @@ export enum EDeviceActions {
   updateDeviceEvents = '[ Device Events ] update device events',
   updateDeviceEventsSuccess = '[ Device Events Success] update device events success',
   updateDeviceEventsFail = '[ Device Events Fail] update device events Fail'
+
 }
 
 export class GetDevices implements Action {
@@ -84,7 +88,6 @@ export class GetDeviceEventsSuccess implements Action {
 export class GetDeviceTelemetry implements Action {
   public readonly type = EDeviceActions.GetDeviceTelemetry;
   constructor(public payload: any) { }
-
 }
 
 
@@ -137,6 +140,18 @@ export class GetDeviceTelemetryByTimeSuccess implements Action {
   constructor(public payload: DeviceTelemetry[]) { }
 
 }
+export class UpdateDeviceTelemetry implements Action {
+  public readonly type = EDeviceActions.UpdateDeviceTelemetry;
+  constructor(public payload: DeviceTelemetry[]) { }
+}
+export class UpdateDeviceTelemetrySuccess implements Action {
+  public readonly type = EDeviceActions.UpdateDeviceTelemetrySuccess;
+  constructor(public payload: DeviceTelemetry[]) { }
+}
+export class UpdateDeviceTelemetryFail implements Action {
+  public readonly type = EDeviceActions.UpdateDeviceTelemetryFail;
+
+}
 export type DeviceActions = GetDevices | GetDevicesSuccess | GetDevice
   | GetDeviceSuccess | getDeviceMetaData
   | GetDeviceMetaDataSuccess
@@ -153,4 +168,7 @@ export type DeviceActions = GetDevices | GetDevicesSuccess | GetDevice
   | updateDeviceMetadataSuccess
   | updateDeviceMetadataFail
   | updateDeviceEventsSuccess
-  | updateDeviceEventsFail;
+  | updateDeviceEventsFail
+  | UpdateDeviceTelemetry
+  | UpdateDeviceTelemetryFail
+  |UpdateDeviceTelemetrySuccess;

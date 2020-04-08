@@ -7,7 +7,7 @@ import { timer, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Router } from '@angular/router';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-device-metadata',
   templateUrl: './device-metadata.component.html',
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class DeviceMetadataComponent implements OnInit {
 
   devicemetadata: IDeviceMetadata[] = [];
-  constructor(private _store: Store<IAppState>, private _router: Router) { }
+  constructor(public translate: TranslateService,private _store: Store<IAppState>, private _router: Router) { }
 
   ngOnInit() {
 

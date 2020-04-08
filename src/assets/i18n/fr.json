@@ -1,0 +1,31 @@
+{
+    "HOME": {
+      "TITLE1": "Epredia Revos",
+      "TITLE2": "Gérer les utilisateurs",
+      "TITLE3": "Plus d'informations",
+      "TITLE4": "Déconnecter",
+      "TITLE5": "Faites votre favori",
+      "TITLE6": "Changer la langue",
+      "DEVICE_NAME": "Nom de l'appareil",
+      "SEARCH": "chercher",
+      "SERIAL_NUMBER":"numéro de série",
+      "SOFTWARE_VERSION":"une version de logiciel",
+      "FIRM_VERSION":"version ferme",
+      "STATUS": "statut",
+      "REQ_TYPE": "Type de demande",
+      "CHAMBER_STATUS": "Statut de la chambre",
+      "PROTOCOL_NAME": "Nom du protocole",
+      "REAGENT_NAME":  "Nom du réactif",
+      "TIMESTAMP":  "Horodatage",
+      "EVENT": "Événements",
+      "EVENT_TYPE": "Type d'événement",
+      "DESCRIPTION": "La description",
+      "COMMERCIAL_REGION": "Région commerciale",
+      "SERVICE_REGION": "Région de service",
+      "ERROR_CODE": "Code d'erreur",
+      "EVENT_NOT_AVAL":"Événements non disponibles"
+
+
+    }
+  }
+  

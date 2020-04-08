@@ -1,5 +1,5 @@
-import { IDeviceMetadata } from './../../models/deviceMetadata.interface';
-import { GetDevices, GetDevice, getDeviceMetaData, getDeviceEvents, UpdateDevice, updateDeviceMetadata } from './../../store/actions/device.actions';
+import { DeviceService } from './../../services/device.service';
+import { GetDevices, GetDevice, getDeviceMetaData, getDeviceEvents, UpdateDevice, updateDeviceMetadata, GetDeviceTelemetry } from './../../store/actions/device.actions';
 import { IAppState } from './../../store/state/app.state';
 import { selectDeviceList, deviceMetadata, selectSelectedDevice } from './../../store/selectors/device.selector';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { timer, Observable } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.component.html',
@@ -22,7 +23,7 @@ export class DeviceListComponent implements OnInit {
   deviceMetaData$: Observable<any[]>;
   deviceList: any[];
 
-  constructor(private _store: Store<IAppState>, private _router: Router) { }
+  constructor(private device: DeviceService,public translate: TranslateService,private _store: Store<IAppState>, private _router: Router) { }
 
 
   ngOnInit() {
@@ -50,12 +51,14 @@ export class DeviceListComponent implements OnInit {
     // this.dummyFunction();
     this._store.dispatch(new getDeviceMetaData(device));
     this._store.dispatch(new getDeviceEvents(device._id));
+    this._store.dispatch(new GetDeviceTelemetry(device._id));
+this.device.selectedDeviceId = device._id;
   }
   openModal() {
     const e = this.modalBtn.nativeElement as HTMLElement;
     e.click();
   }
 
-  
+
 }
 

@@ -13,18 +13,19 @@ import * as jwt_decode from 'jwt-decode';
 @Injectable()
 export class DeviceService {
 
+  selectedDeviceId: number;
 
-  
+
    //token = localStorage.getItem("msal.idtoken"||null);
 
    //decoded = jwt_decode(this.token);
   // userName = (this.decoded.given_name).toLowerCase()
   userName=sessionStorage.getItem("msal.idtoken")?jwt_decode(sessionStorage.getItem("msal.idtoken")).given_name.toLowerCase():"naman";
- 
+
     private _deviceUrl = 'https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/'+ this.userName+'/devices';
   private deviceMeetadataUrl = 'https://cosmos-db-api-1584105173809.azurewebsites.net/epredia/v1/1/metadata';
   devices: any = [];
-   
+
 
    // console.log('connecting to server');
   constructor(private http: HttpClient) {
@@ -68,12 +69,16 @@ export class DeviceService {
   }
 
 
-  /**
+
+
+  //  get telemetry data
+    /**
    * @description: get telemetry data of last 1 hour
-   * @param deviceId:[ device id ] 
+   * @param deviceId:[ device id ]
    */
   getLastHourTelemetryData(deviceId: string): Observable<DeviceTelemetry[]> {
-    const url = 'https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/'+ this.userName+'/' + deviceId + '/telemetry';
+    // const url = 'https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/' + this.userName + '/' + deviceId + '/telemetry/last/' + 10000;
+    const url = 'https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/' + this.userName + '/' + deviceId + '/telemetry';
     return this.http.get(url).pipe(
       map((res: any) => res.deviceTelemetry.messages)
     );
@@ -81,14 +86,27 @@ export class DeviceService {
 
   /**
    * @description: get telemetry data of last 1 hour
-   * @param deviceId:[ device id ] 
+   * @param deviceId:[ device id ]
    */
   getTimeSpecificTelemetryData(deviceId: string, time: string): Observable<DeviceTelemetry[]> {
-    const url = 'https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/'+ this.userName+'/' + deviceId + '/telemetry/last' + time;
+    const url = 'https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/' + this.userName + '/' + deviceId + '/telemetry/last/' + time;
     return this.http.get(url).pipe(
       map((res: any) => res.deviceTelemetry.messages)
     );
   }
+
+  getTelemetryByRange(from : string, to: string): Observable<any> {
+
+    const url='https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/'+ this.userName+'/'+ this.selectedDeviceId+'/telemetry/range';
+    const body = {
+      from : new Date(from).toISOString(),
+      to: new Date(to).toISOString()
+    }
+    return this.http.post(url,body).pipe(
+      map((res: any) => res.deviceTelemetry.messages));
+
+  }
+
 
   private handleError(err: HttpErrorResponse) {
     console.log(err);

@@ -7,20 +7,25 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      <li>
+      <a class="nav-link" href="#">{{ 'HOME.TITLE2' | translate }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">{{ 'HOME.TITLE3' | translate }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">{{ 'HOME.TITLE4' | translate }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">{{ 'HOME.TITLE5' | translate }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">{{ 'HOME.TITLE6' | translate }} </a>
+    </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Manage users</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">More info</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Disconnect</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Make favourite</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Schedule Instrument</a>
+        <select #langSelect (change)="translate.use(langSelect.value)">
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        </select>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" *ngIf="isConnecting">
@@ -69,20 +74,19 @@
         </div>
         <div class="col-7">
 
-          
+
             <app-device-metadata ></app-device-metadata>
-          
-        </div>
-      </div>
-      <!-- <div class="row mt-3">
-        <div class="col-6">
-          <img src="../../assets/line-chart.png" width="450" height="350" alt="" srcset="">
 
         </div>
-        <div class="col-6">
-        
-        </div> -->
-      
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 p-0">
+          <!-- <img src="../../assets/line-chart.png" width="450" height="350" alt="" srcset=""> -->
+          <app-chart></app-chart>
+
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="col-12" >
@@ -91,7 +95,7 @@
         <a class="nav-link" [ngClass]="{ 'active': isActive == 0}" (click)="isActive=0" id="home-tab" data-toggle="tab"
           role="tab" aria-controls="home" aria-selected="true">Events</a>
       </li>
-     
+
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade" [ngClass]="{'show': isActive == 0, 'active': isActive == 0}" id="home" role="tabpanel"
@@ -101,5 +105,5 @@
 
     </div>
   </div>
-</div> 
+</div>
 

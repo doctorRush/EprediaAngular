@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { deviceEvents } from '../../store/selectors/device.selector';
 
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-device-events',
   templateUrl: './device-events.component.html',
@@ -15,7 +15,7 @@ import { deviceEvents } from '../../store/selectors/device.selector';
 })
 export class DeviceEventsComponent implements OnInit {
   eventList: IDeviceEvents[] = [];
-  constructor(private _store: Store<IAppState>) { }
+  constructor(public translate: TranslateService,private _store: Store<IAppState>) { }
 
   ngOnInit() {
 

@@ -1,33 +1,31 @@
 
 
 <table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th>Device id</th>
-        <th scope="col">Event Type</th>
-        <th scope="col">Description</th>
-        <th scope="col">Commercial Region</th>
-        <th scope="col">Service Region</th>
-        <th scope="col">Error Code</th>
-        <th scope="col">Timestamp</th>          
-      </tr>
-    </thead>
-    <tbody *ngIf="eventList" >
-      <tr *ngFor="let data of eventList" id="deviceEvent">
-       <td>{{data.deviceId}}</td>
-        <td>{{ data.eventParameters.event_type || '-' }}</td>
-        <td>{{ data.eventParameters.description  || '-' }}</td>
-        <td>{{ data.eventParameters.commercial_region || '-' }}</td>
-        <td>{{ data.eventParameters.service_region || '-' }}</td>
-        <td>{{ data.eventParameters.error_code  || '-' }}</td>
-        <td>{{ data.timestamp  | date:'medium' || '-' }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">{{ 'HOME.EVENT_TYPE' | translate }}</th>
+      <th scope="col">{{ 'HOME.DESCRIPTION' | translate }}</th>
+      <th scope="col">{{ 'HOME.COMMERCIAL_REGION' | translate }}</th>
+      <th scope="col">{{ 'HOME.SERVICE_REGION' | translate }}</th>
+      <th scope="col">{{ 'HOME.ERROR_CODE' | translate }}</th>
+      <th scope="col">{{ 'HOME.TIMESTAMP' | translate }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of eventList" id="deviceEvent"
+     >
+      <td>{{ data.eventParameters.event_type || '-' }}</td>
+      <td>{{ data.eventParameters.description  || '-' }}</td>
+      <td>{{ data.eventParameters.commercial_region || '-' }}</td>
+      <td>{{ data.eventParameters.service_region || '-' }}</td>
+      <td>{{ data.eventParameters.error_code  || '-' }}</td>
+      <td>{{ data.timestamp  | date:'medium' || '-' }}</td>
+    </tr>
+  </tbody>
+</table>
 
-  <div class="card m-3 p-3" *ngIf="eventList.length==0">
-    <div> Events Not Available</div>
-  
-    </div>
-  
-  
+<div class="card m-3 p-3" *ngIf="eventList.length==0">
+  <div>{{ 'HOME.EVENT_NOT_AVAL' | translate }}</div>
+
+  </div>
+

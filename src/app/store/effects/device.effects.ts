@@ -9,7 +9,10 @@ import {
   updateDeviceMetadataFail,
   updateDeviceEvents,
   updateDeviceEventsSuccess,
-  updateDeviceEventsFail
+  updateDeviceEventsFail,
+  UpdateDeviceTelemetry,
+  UpdateDeviceTelemetrySuccess,
+  UpdateDeviceTelemetryFail
 } from './../actions/device.actions';
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
@@ -206,6 +209,33 @@ export class DeviceEffects {
     switchMap((device: DeviceTelemetry[]) => of(new GetDeviceTelemetrySuccess(device)))
   );
 
+  /**
+ * @description: get Device Telemetry
+ */
+@Effect()
+updateDeviceTelemetry$ = this._actions$.pipe(
+  ofType<UpdateDeviceTelemetry>(EDeviceActions.UpdateDeviceTelemetry),
+  map(action => {
+    return action.payload;
+  }),
+  withLatestFrom(this._store.pipe(select(selectSelectedDevice))),
+  switchMap(([payload, device]) => {
+    const a: DeviceTelemetry[] = [];
+
+    for (const i of payload) {
+      console.log('inside payload array');
+
+      if (device._id.toString() == i.deviceId) {
+        a.push(i)
+        return of(new UpdateDeviceTelemetrySuccess(a));
+      }
+      else {
+      }
+
+    }
+    return of(new UpdateDeviceTelemetryFail());
+  })
+);
 
   /**
  * @description: get Device Telemetry

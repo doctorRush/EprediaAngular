@@ -1,5 +1,5 @@
 import { IDeviceEvents } from './../models/deviceEvents.interface';
-import { getDeviceEvents, updateDeviceEvents } from './../store/actions/device.actions';
+import { getDeviceEvents, updateDeviceEvents, UpdateDeviceTelemetry } from './../store/actions/device.actions';
 import { IDevice } from './../models/device.interface';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -9,10 +9,10 @@ import * as signalR from '@aspnet/signalr'
 import { UpdateDevice, updateDeviceMetadata } from '../store/actions/device.actions';
 
 import { DeviceService } from '../services/device.service';
-import { timer } from 'rxjs';
-import { IDeviceMetadata } from '../models/deviceMetadata.interface';
+
 import { MsalService } from '@azure/msal-angular';
 import * as jwt_decode from 'jwt-decode';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -25,10 +25,15 @@ export class MainComponent implements OnInit ,OnChanges{
   devicemetadata: any;
   isConnecting = true;
   userInfo:string;
-  constructor(
+  constructor(public translate: TranslateService,
     private deviceService: DeviceService,
     private _store: Store<IAppState>, private _router: Router,
-    private msalService: MsalService) { }
+    private msalService: MsalService) {
+      translate.setDefaultLang('en');
+      const browserLang = translate.getBrowserLang();
+      translate.use(browserLang.match(/en|fr|es/) ? browserLang : 'en');
+      console.log(translate.getLangs());
+    }
 
 
     ngOnChanges(){
@@ -36,19 +41,6 @@ export class MainComponent implements OnInit ,OnChanges{
       console.log(this.deviceService.userName)
     }
   ngOnInit() {
-    //this.deviceService.userName=jwt_decode(sessionStorage.getItem("msal.idtoken")).given_name.toLowerCase();
-   // console.log(this.deviceService.userName)
-    // timer(0,5000).subscribe(
-    //   () => {
-    //     console.log('updating metadata');
-
-    //     this.dummyFunction();
-    //   }
-    // );
- // this.userInfo=this.msalService.use
-//  var token = localStorage.getItem("msal.idtoken");
-//  var  decoded = jwt_decode(token); 
-// console.log( );  
     console.log('connecting to server');
 
     this.deviceService.ConnectHubWithSignalR().subscribe(res => {
@@ -90,6 +82,12 @@ export class MainComponent implements OnInit ,OnChanges{
         }
 
       });
+      connection.on('deviceTelemetry', (data: any) => {
+
+        console.log(data);
+        this._store.dispatch(new UpdateDeviceTelemetry(data));
+
+      })
 
     });
 

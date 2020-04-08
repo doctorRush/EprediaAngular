@@ -5,3 +5,9 @@
   margin:1rem;
 }
 
+
+select{
+margin-top: 3px;
+padding: 5px 41px;
+border-radius: 6px;
+}

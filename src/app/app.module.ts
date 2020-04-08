@@ -9,12 +9,14 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { appReducers } from './store/reducers/app.reducers';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 import { DeviceEffects } from './store/effects/device.effects';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MainComponent } from './components/main.component';
 import { DeviceListComponent } from './components/device-list/device-list.component';
 import { DeviceService } from './services/device.service';
@@ -28,6 +30,9 @@ import { DeviceEventsComponent } from './components/device-events/device-events.
 import { ChartComponent } from './components/chart/chart.component';
 import { LoginComponent } from './components/login/login.component';
 import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -45,12 +50,20 @@ import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
   imports: [
     BrowserModule,
     AppRoutingModule, HttpClientModule,
-
+    FormsModule,ReactiveFormsModule,
+    HighchartsChartModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([DeviceEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    }),
     MsalModule.forRoot({
       auth: {
         clientId: 'cc288e39-e236-426b-8003-9b77343bbe15',
