@@ -22,22 +22,20 @@ export class DeviceService {
   // userName = (this.decoded.given_name).toLowerCase()
   userName=sessionStorage.getItem("msal.idtoken")?jwt_decode(sessionStorage.getItem("msal.idtoken")).given_name.toLowerCase():"naman";
 
-    private _deviceUrl = 'https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/'+ this.userName+'/devices';
   private deviceMeetadataUrl = 'https://cosmos-db-api-1584105173809.azurewebsites.net/epredia/v1/1/metadata';
   devices: any = [];
 
 
-   // console.log('connecting to server');
+  // console.log('connecting to server');
   constructor(private http: HttpClient) {
 
   }
 
   getDevices(): Observable<any> {
 
-    return this.http.get<IDeviceHttp>(this._deviceUrl).pipe(
+    const _deviceUrl = 'https://cosmos-db-api-epredia.azurewebsites.net/epredia/v1/'+ this.userName+'/devices';
+    return this.http.get<IDeviceHttp>(_deviceUrl).pipe(
       map((res: any) => {
-        console.log(this._deviceUrl+"_____"+this.userName);
-        console.log("Adding username")
         return res.deviceInfo}),
       catchError(this.handleError));
 

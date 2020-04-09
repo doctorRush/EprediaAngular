@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { timer, Observable } from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-device-list',
   templateUrl: './device-list.component.html',
@@ -23,7 +23,7 @@ export class DeviceListComponent implements OnInit {
   deviceMetaData$: Observable<any[]>;
   deviceList: any[];
 
-  constructor(private device: DeviceService,public translate: TranslateService,private _store: Store<IAppState>, private _router: Router) { }
+  constructor(private device: DeviceService, public translate: TranslateService, private _store: Store<IAppState>, private _router: Router) { }
 
 
   ngOnInit() {
@@ -33,6 +33,7 @@ export class DeviceListComponent implements OnInit {
       console.log(res);
     });
     // this._store.dispatch(new GetDevices());
+    // this.device.userName = jwt_decode(sessionStorage.getItem("msal.idtoken")).given_name.toLowerCase();
     this._store.dispatch(new GetDevices());
     this._store.select(selectDeviceList).subscribe(
       deviceList => {
@@ -52,7 +53,7 @@ export class DeviceListComponent implements OnInit {
     this._store.dispatch(new getDeviceMetaData(device));
     this._store.dispatch(new getDeviceEvents(device._id));
     this._store.dispatch(new GetDeviceTelemetry(device._id));
-this.device.selectedDeviceId = device._id;
+    this.device.selectedDeviceId = device._id;
   }
   openModal() {
     const e = this.modalBtn.nativeElement as HTMLElement;

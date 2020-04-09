@@ -35,6 +35,7 @@ export enum EDeviceActions {
 
 export class GetDevices implements Action {
   public readonly type = EDeviceActions.GetDevices;
+
 }
 
 export class GetDevicesSuccess implements Action {

@@ -26,7 +26,7 @@ export class DevicesComponent implements OnInit {
     this._store.select(selectDeviceList).subscribe( res => {
       console.log(res);
           });
-    this._store.dispatch(new GetDevices());
+    // this._store.dispatch(new GetDevices());
     console.log(selectDeviceList);
     console.log(this.devices$);
   }

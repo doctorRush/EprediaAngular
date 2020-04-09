@@ -5,9 +5,19 @@
   margin:1rem;
 }
 
-
+/*
 select{
 margin-top: 3px;
 padding: 5px 41px;
 border-radius: 6px;
+} */
+
+.user-toggle, .user-toggle:active, .user-toggle:hover,.btn-light:not(:disabled):not(.disabled).active, .btn-light:not(:disabled):not(.disabled):active, .show>.btn-light.dropdown-toggle{
+  background: transparent;
+  color: white;
+  border: none;
+}
+
+select.custome-select.user-toggle.form-control:active {
+  color: black;
 }

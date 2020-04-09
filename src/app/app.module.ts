@@ -71,6 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         redirectUri: 'http://localhost:4200/devices',
         validateAuthority: false,
         navigateToLoginRequestUrl: false,
+        postLogoutRedirectUri: 'http://localhost:4200/login'
       },
       cache: {
         cacheLocation: 'sessionStorage',

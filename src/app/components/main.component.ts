@@ -18,8 +18,9 @@ import {TranslateService} from '@ngx-translate/core';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit ,OnChanges{
+export class MainComponent implements OnInit{
 
+  userName;
   isActive = 0;
   selectDevice = null;
   devicemetadata: any;
@@ -30,19 +31,14 @@ export class MainComponent implements OnInit ,OnChanges{
     private _store: Store<IAppState>, private _router: Router,
     private msalService: MsalService) {
       translate.setDefaultLang('en');
+      translate.addLangs(['fr','es'])
       const browserLang = translate.getBrowserLang();
       translate.use(browserLang.match(/en|fr|es/) ? browserLang : 'en');
       console.log(translate.getLangs());
     }
 
-
-    ngOnChanges(){
-     this.deviceService.userName=jwt_decode(sessionStorage.getItem("msal.idtoken")).given_name.toLowerCase();
-      console.log(this.deviceService.userName)
-    }
   ngOnInit() {
-    console.log('connecting to server');
-
+this.userName =  this.deviceService.userName;
     this.deviceService.ConnectHubWithSignalR().subscribe(res => {
 
       console.log(res);
@@ -119,6 +115,10 @@ export class MainComponent implements OnInit ,OnChanges{
   selectedDevice(device: IDevice) {
 
 
+  }
+
+  logout() {
+    this.msalService.logout();
   }
 
 }

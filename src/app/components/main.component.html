@@ -8,54 +8,66 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li>
-      <a class="nav-link" href="#">{{ 'HOME.TITLE2' | translate }}</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">{{ 'HOME.TITLE3' | translate }}</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">{{ 'HOME.TITLE4' | translate }}</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">{{ 'HOME.TITLE5' | translate }}</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">{{ 'HOME.TITLE6' | translate }} </a>
-    </li>
+        <a class="nav-link" href="#">{{ 'HOME.TITLE2' | translate }}</a>
+      </li>
       <li class="nav-item">
-        <select #langSelect (change)="translate.use(langSelect.value)">
-          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        <a class="nav-link" href="#">{{ 'HOME.TITLE3' | translate }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{ 'HOME.TITLE4' | translate }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{ 'HOME.TITLE5' | translate }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{ 'HOME.TITLE6' | translate }} </a>
+      </li>
+      <li class="nav-item">
+        <select class="custome-select user-toggle form-control" #langSelect (change)="translate.use(langSelect.value)">
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang"
+            data-thumbnail="../../assets/france.svg">{{ lang }}</option>
         </select>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" *ngIf="isConnecting">
       <div class="spinner-grow text-danger" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <div class="spinner-grow text-danger" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-          <div class="spinner-grow text-danger" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-   <!-- <label class="text-white">{{isConnecting ? 'connecting' : 'connected'}}</label> -->
-    <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-  </form>
-  <form class="form-inline my-2 my-lg-0" *ngIf="!isConnecting">
-    <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+
+    </form>
+    <form class="form-inline my-2 my-lg-0" *ngIf="!isConnecting">
+      <div class="spinner-grow text-success" role="status">
         <span class="sr-only">Loading...</span>
       </div>
       <div class="spinner-grow text-success" role="status">
-          <span class="sr-only">Loading...</span>
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+
+    </form>
+    <form class="from-inline my-2">
+      <div class="btn-group">
+        <button type="button" class="user-toggle btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          Hi, {{userName}}
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+
         </div>
-        <div class="spinner-grow text-success" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
- <!-- <label class="text-white">{{isConnecting ? 'connecting' : 'connected'}}</label> -->
-  <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-</form>
+      </div>
+      <i class="fa fa-bell-o text-white" aria-hidden="true"></i>
+
+      <!-- <button type="button" class="btn btn-sm btn-danger" (click)="logout()">Logout</button> -->
+    </form>
 
   </div>
 </nav>
@@ -68,14 +80,14 @@
       <div class="row">
 
 
-        <div class="col-5" >
+        <div class="col-5">
 
           <app-device-details [device]="selectDevice"></app-device-details>
         </div>
         <div class="col-7">
 
 
-            <app-device-metadata ></app-device-metadata>
+          <app-device-metadata></app-device-metadata>
 
         </div>
       </div>
@@ -89,7 +101,7 @@
 
     </div>
   </div>
-  <div class="col-12" >
+  <div class="col-12">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link" [ngClass]="{ 'active': isActive == 0}" (click)="isActive=0" id="home-tab" data-toggle="tab"
@@ -100,10 +112,9 @@
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade" [ngClass]="{'show': isActive == 0, 'active': isActive == 0}" id="home" role="tabpanel"
         aria-labelledby="home-tab">
-      <app-device-events></app-device-events>
+        <app-device-events></app-device-events>
       </div>
 
     </div>
   </div>
 </div>
-
