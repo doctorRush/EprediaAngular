@@ -25,8 +25,20 @@
       <li class="nav-item">
         <select class="custome-select user-toggle form-control" #langSelect (change)="translate.use(langSelect.value)">
           <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang"
-            data-thumbnail="../../assets/france.svg">{{ lang }}</option>
+            data-thumbnail="">{{ lang }}</option>
         </select>
+
+        <!-- <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownForm1" ngbDropdownToggle>Toggle dropdown</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+            <li *ngFor="let lang of translate.getLangs()">
+              <span><img src="../../assets/france.svg" alt="" srcset=""></span>
+              {{ lang }}
+            </li>
+
+          </div>
+        </div> -->
+
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" *ngIf="isConnecting">

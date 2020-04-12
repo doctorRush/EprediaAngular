@@ -12,33 +12,33 @@ import { DeviceService } from '../services/device.service';
 
 import { MsalService } from '@azure/msal-angular';
 import * as jwt_decode from 'jwt-decode';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit{
+export class MainComponent implements OnInit {
 
   userName;
   isActive = 0;
   selectDevice = null;
   devicemetadata: any;
   isConnecting = true;
-  userInfo:string;
+  userInfo: string;
   constructor(public translate: TranslateService,
     private deviceService: DeviceService,
     private _store: Store<IAppState>, private _router: Router,
     private msalService: MsalService) {
-      translate.setDefaultLang('en');
-      translate.addLangs(['fr','es'])
-      const browserLang = translate.getBrowserLang();
-      translate.use(browserLang.match(/en|fr|es/) ? browserLang : 'en');
-      console.log(translate.getLangs());
-    }
+    translate.setDefaultLang('en');
+    translate.addLangs(['fr', 'es'])
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|fr|es/) ? browserLang : 'en');
+    console.log(translate.getLangs());
+  }
 
   ngOnInit() {
-this.userName =  this.deviceService.userName;
+    this.userName = this.deviceService.userName;
     this.deviceService.ConnectHubWithSignalR().subscribe(res => {
 
       console.log(res);
@@ -55,7 +55,7 @@ this.userName =  this.deviceService.userName;
 
       connection.start().then(() => {
         console.log('Connected!');
-        this.isConnecting=false;
+        this.isConnecting = false;
       }).catch((err) => {
         return console.error(err.toString());
       });
@@ -99,7 +99,7 @@ this.userName =  this.deviceService.userName;
       eventParameters: {
         commercial_region: "33",
         description: "Warn Chamber Temprature Over",
-        error_code: "2010301 => "+ random,
+        error_code: "2010301 => " + random,
         event_type: "WARNING_STATUS",
         service_region: "66"
       },

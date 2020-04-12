@@ -10,6 +10,7 @@ import { appReducers } from './store/reducers/app.reducers';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { HighchartsChartModule } from 'highcharts-angular';
+// import {ngbDropdown} from '@ng-bootstrap/ng-bootstrap/dropdown';
 
 import { DeviceEffects } from './store/effects/device.effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,6 +58,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
+    // ngbDropdown,
+    // NgbModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

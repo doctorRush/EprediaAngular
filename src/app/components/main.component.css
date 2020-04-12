@@ -19,5 +19,5 @@ border-radius: 6px;
 }
 
 select.custome-select.user-toggle.form-control:active {
-  color: black;
+  color: black !important;
 }
