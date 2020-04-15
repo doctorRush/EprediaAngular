@@ -166,7 +166,7 @@ export class DeviceEffects {
     switchMap((device: any) => {
       console.log(device);
 
-      return of(new GetDeviceMetaDataSuccess(device.deviceMetdata.events))
+      return of(new GetDeviceMetaDataSuccess(device.deviceMetadata.events))
     })
   );
 

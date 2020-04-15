@@ -2,7 +2,7 @@ import { EDeviceActions } from './../actions/device.actions';
 import { DeviceActions } from '../actions/device.actions';
 import { initialDeviceState, IDeviceState } from '../state/device.state';
 
-export const deviceReducers = (
+export const deviceReducers= (
   state = initialDeviceState,
   action: DeviceActions
 ): IDeviceState => {
@@ -57,7 +57,7 @@ export const deviceReducers = (
 
     case EDeviceActions.updateDeviceEventsSuccess: {
 
-      const data = [... state.deviceEvents, ...action.payload];
+      const data = [...state.deviceEvents, ...action.payload];
 
       return {
         ...state,
@@ -66,7 +66,7 @@ export const deviceReducers = (
     }
     case EDeviceActions.UpdateDeviceTelemetrySuccess: {
 
-      const data = [... state.deviceTelemetry, ...action.payload];
+      const data = [...state.deviceTelemetry, ...action.payload];
 
       return {
         ...state,

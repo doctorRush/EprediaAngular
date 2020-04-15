@@ -21,3 +21,15 @@ border-radius: 6px;
 select.custome-select.user-toggle.form-control:active {
   color: black !important;
 }
+.count{
+  background: red;
+  border-radius: 50%;
+  font-size: 1rem;
+  color: #ffffff;
+  position: absolute;
+  margin: -0.25rem 0 0 1.4rem;
+  width: 1.5rem;
+text-align: center;
+  height: 1.5rem;
+  font-weight: 700;
+}

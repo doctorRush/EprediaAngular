@@ -26,6 +26,7 @@ export class MainComponent implements OnInit {
   devicemetadata: any;
   isConnecting = true;
   userInfo: string;
+  notifList: IDeviceEvents[]= [];
   constructor(public translate: TranslateService,
     private deviceService: DeviceService,
     private _store: Store<IAppState>, private _router: Router,
@@ -72,6 +73,11 @@ export class MainComponent implements OnInit {
         if (data[0].request ? data[0].request == 'senddata' : false) {
           console.log('update event recieved');
           this._store.dispatch(new updateDeviceEvents(data));
+          this.notifList.push(data);
+          const evList = [...this.notifList];
+          evList.push(data);
+          this.notifList = evList;
+
         } else {
           console.log('metadata update recieved via device metadata---------------------------------------------------------------------');
           this._store.dispatch(new updateDeviceMetadata(data));

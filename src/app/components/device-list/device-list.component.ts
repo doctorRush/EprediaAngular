@@ -51,10 +51,12 @@ export class DeviceListComponent implements OnInit {
     this._store.dispatch(new GetDevice(device._id));
     // this.dummyFunction();
     this._store.dispatch(new getDeviceMetaData(device));
-    this._store.dispatch(new getDeviceEvents(device._id));
     this._store.dispatch(new GetDeviceTelemetry(device._id));
+    this._store.dispatch(new getDeviceEvents(device._id));
     this.device.selectedDeviceId = device._id;
   }
+
+
   openModal() {
     const e = this.modalBtn.nativeElement as HTMLElement;
     e.click();

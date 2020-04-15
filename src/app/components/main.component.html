@@ -67,7 +67,8 @@
     </form>
     <form class="from-inline my-2">
       <div class="btn-group">
-        <button type="button" class="user-toggle btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="user-toggle btn btn-light dropdown-toggle" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-user-circle" aria-hidden="true"></i>
           Hi, {{userName}}
         </button>
@@ -76,10 +77,36 @@
 
         </div>
       </div>
-      <i class="fa fa-bell-o text-white" aria-hidden="true"></i>
 
-      <!-- <button type="button" class="btn btn-sm btn-danger" (click)="logout()">Logout</button> -->
     </form>
+    <div class="btn-group dropleft">
+      <i class="fa fa-bell-o text-white" style="font-size: 2rem;" aria-hidden="true" data-toggle="dropdown"></i>
+      <span class="count"> {{notifList.length}}</span>
+      <div class="dropdown-menu" style="min-width: 38rem;">
+
+
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">{{ 'HOME.EVENT_TYPE' | translate }}</th>
+              <th scope="col">{{ 'HOME.DESCRIPTION' | translate }}</th>
+              <th scope="col">{{ 'HOME.ERROR_CODE' | translate }}</th>
+              <th scope="col">{{ 'HOME.TIMESTAMP' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of notifList" id="deviceEvent">
+              <td>{{ data.eventParameters.event_type || '-' }}</td>
+              <td>{{ data.eventParameters.description  || '-' }}</td>
+              <td>{{ data.eventParameters.error_code  || '-' }}</td>
+              <td>{{ data.timestamp  | date:'medium' || '-' }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
 
   </div>
 </nav>
@@ -105,7 +132,6 @@
       </div>
       <div class="row mt-3">
         <div class="col-12 p-0">
-          <!-- <img src="../../assets/line-chart.png" width="450" height="350" alt="" srcset=""> -->
           <app-chart></app-chart>
 
         </div>

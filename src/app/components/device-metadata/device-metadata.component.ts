@@ -16,7 +16,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class DeviceMetadataComponent implements OnInit {
 
   devicemetadata: IDeviceMetadata[] = [];
-  constructor(public translate: TranslateService,private _store: Store<IAppState>, private _router: Router) { }
+  constructor(public translate: TranslateService,private _store: Store<IAppState>, private _router: Router) {
+
+  }
 
   ngOnInit() {
 
@@ -24,6 +26,7 @@ export class DeviceMetadataComponent implements OnInit {
 
     this._store.select(deviceMetadata).subscribe(
       metaData => {
+        console.log(this.translate.currentLang);
         console.log('subscribe to device metatdata');
         console.log(metaData);
         this.devicemetadata = null;

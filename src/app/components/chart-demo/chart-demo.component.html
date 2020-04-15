@@ -1,0 +1,42 @@
+
+
+<div class="container-fluid">
+  <div class="card">
+    <div class="row m-4">
+      <div class="col-5 text-right">
+        <label > Select Feature :</label>
+      </div>
+      <div class="col-5 pl-0 ml-0">
+        <select class="custom-select" (change)="updateChartSeries($event)">
+          <option value="0" selected> Pressure Chamber</option>
+          <option value="1"> Specific Gravity</option>
+          <option value="2">Temparature Chamber Fluid</option>
+          <option value="3">Temperature Waxbath Fluid 1</option>
+          <option value="4">Temperature Waxbath fluid 3</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-12">
+
+        <div class="card m-2">
+
+          <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions" [(update)]="updateFlag">
+          </highcharts-chart>
+        </div>
+
+      </div>
+
+
+  </div>
+</div>
+<div class="container-fluid mt-4">
+  <div class="card">
+
+
+    <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+  </div>
+</div>
+
+<!--  -->

@@ -24,17 +24,23 @@ import { DeviceService } from './services/device.service';
 import { DeviceDetailsComponent } from './components/device-details/device-details.component';
 
 import { DevicesComponent } from './containers/devices/devices/devices.component';
-
+import {DateFormatPipe} from '../core/pipe/date-format.pipe';
 import { DeviceComponent } from './containers/device/device/device.component';
 import { DeviceMetadataComponent } from './components/device-metadata/device-metadata.component';
 import { DeviceEventsComponent } from './components/device-events/device-events.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { LoginComponent } from './components/login/login.component';
 import { MsalModule, MsalInterceptor } from '@azure/msal-angular';
+import { ChartDemoComponent } from './components/chart-demo/chart-demo.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+import * as PlotlyJS from 'plotly.js/dist/plotly.js';
+import { PlotlyModule } from 'angular-plotly.js';
+import { PlotlyViaWindowModule } from 'angular-plotly.js';
 
+
+PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,10 +52,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     DeviceMetadataComponent,
     DeviceEventsComponent,
     ChartComponent,
-    LoginComponent
+    LoginComponent,
+    DateFormatPipe,
+    ChartDemoComponent
   ],
   imports: [
     BrowserModule,
+    PlotlyViaWindowModule,
     AppRoutingModule, HttpClientModule,
     FormsModule,ReactiveFormsModule,
     HighchartsChartModule,
@@ -58,6 +67,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AppRoutingModule,
+    PlotlyModule,
     // ngbDropdown,
     // NgbModule,
     TranslateModule.forRoot({

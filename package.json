@@ -30,7 +30,9 @@
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@popperjs/core": "^2.2.1",
+    "@types/plotly.js": "^1.50.4",
     "angular-highcharts": "^9.0.2",
+    "angular-plotly.js": "^2.0.0",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "highcharts": "^8.0.4",
@@ -38,6 +40,7 @@
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "msal": "^1.2.2",
+    "plotly.js": "^1.53.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
