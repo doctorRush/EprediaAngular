@@ -9,20 +9,17 @@ import { ChartDemoComponent } from './components/chart-demo/chart-demo.component
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: 'devices', component: MainComponent,canActivate: [
+    path: 'devices', component: MainComponent, canActivate: [
       AuthGuard
     ]
   },
-  // {
-  //   path: 'devices', component: MainComponent
-  // },
   {
     path: 'chart-demo', component: ChartDemoComponent
   },
-  { path: 'device/:id', component: DeviceComponent,canActivate: [
+  { path: 'device/:id', component: DeviceComponent, canActivate: [
     AuthGuard
   ] },
-  { path: '', redirectTo:"/login" ,pathMatch:"full"}
+  { path: '', redirectTo: '/login' , pathMatch: 'full'}
 
 ];
 

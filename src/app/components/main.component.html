@@ -95,12 +95,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of notifList" id="deviceEvent">
+            <!-- <tr *ngFor="let data of notifList" id="deviceEvent">
               <td>{{ data.eventParameters.event_type || '-' }}</td>
               <td>{{ data.eventParameters.description  || '-' }}</td>
               <td>{{ data.eventParameters.error_code  || '-' }}</td>
               <td>{{ data.timestamp  | date:'medium' || '-' }}</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
 
@@ -145,12 +145,21 @@
         <a class="nav-link" [ngClass]="{ 'active': isActive == 0}" (click)="isActive=0" id="home-tab" data-toggle="tab"
           role="tab" aria-controls="home" aria-selected="true">Events</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ 'active': isActive == 1}" (click)="isActive=1" id="notif-tab" data-toggle="tab"
+          role="tab" aria-controls="notif" aria-selected="true">Notification</a>
+      </li>
 
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade" [ngClass]="{'show': isActive == 0, 'active': isActive == 0}" id="home" role="tabpanel"
         aria-labelledby="home-tab">
         <app-device-events></app-device-events>
+      </div>
+
+      <div class="tab-pane fade" [ngClass]="{'show': isActive == 1, 'active': isActive == 1}" id="notif" role="tabpanel"
+        aria-labelledby="notif-tab">
+        <app-notification></app-notification>
       </div>
 
     </div>

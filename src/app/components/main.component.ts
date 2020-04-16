@@ -7,12 +7,10 @@ import { Router } from '@angular/router';
 import { IAppState } from '../store/state/app.state';
 import * as signalR from '@aspnet/signalr'
 import { UpdateDevice, updateDeviceMetadata } from '../store/actions/device.actions';
-
 import { DeviceService } from '../services/device.service';
-
 import { MsalService } from '@azure/msal-angular';
-import * as jwt_decode from 'jwt-decode';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -27,10 +25,13 @@ export class MainComponent implements OnInit {
   isConnecting = true;
   userInfo: string;
   notifList: IDeviceEvents[]= [];
-  constructor(public translate: TranslateService,
+  constructor(
+    public translate: TranslateService,
     private deviceService: DeviceService,
-    private _store: Store<IAppState>, private _router: Router,
-    private msalService: MsalService) {
+    private _store: Store<IAppState>,
+    private _router: Router,
+    private msalService: MsalService
+    ) {
     translate.setDefaultLang('en');
     translate.addLangs(['fr', 'es'])
     const browserLang = translate.getBrowserLang();
@@ -41,9 +42,6 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.userName = this.deviceService.userName;
     this.deviceService.ConnectHubWithSignalR().subscribe(res => {
-
-      console.log(res);
-
       const options = {
         accessTokenFactory: () => res.accessToken
       };
@@ -51,10 +49,8 @@ export class MainComponent implements OnInit {
         .configureLogging(signalR.LogLevel.Information)
         .withUrl(res.url, options)
         .build();
-      console.log('Starting server');
 
-
-      connection.start().then(() => {
+        connection.start().then(() => {
         console.log('Connected!');
         this.isConnecting = false;
       }).catch((err) => {
@@ -62,18 +58,15 @@ export class MainComponent implements OnInit {
       });
 
       connection.on('deviceDetails', (data: any) => {
-
-        console.log(' update recieved via device update---------------------------------------------------------------------');
-        console.log(data);
         this._store.dispatch(new UpdateDevice(data[0].devicesInfo));
       });
 
       connection.on('deviceMetadata', (data: any) => {
-        console.log(data);
+
         if (data[0].request ? data[0].request == 'senddata' : false) {
-          console.log('update event recieved');
+
           this._store.dispatch(new updateDeviceEvents(data));
-          this.notifList.push(data);
+          // this.notifList.push(data);
           const evList = [...this.notifList];
           evList.push(data);
           this.notifList = evList;

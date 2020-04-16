@@ -18,3 +18,4 @@ export const selectSelectedDevice = createSelector(
 export const deviceMetadata = createSelector(selectDevices, (state: IDeviceState) => state.deviceMetadata);
 export const deviceEvents = createSelector(selectDevices, (state: IDeviceState) => state.deviceEvents);
 export const deviceTelemetry = createSelector(selectDevices, (state: IDeviceState) => state.deviceTelemetry);
+export const notifications = createSelector(selectDevices, (state: IDeviceState) => state.notifications);

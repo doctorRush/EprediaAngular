@@ -6,8 +6,9 @@ export interface IDeviceState {
   devices: IDevice[];
   selectedDevice: IDevice;
   deviceMetadata: any;
-  deviceEvents:IDeviceEvents[];
+  deviceEvents: IDeviceEvents[];
   deviceTelemetry: DeviceTelemetry[];
+  notifications: IDeviceEvents[];
 }
 
 export const initialDeviceState: IDeviceState = {
@@ -15,5 +16,6 @@ export const initialDeviceState: IDeviceState = {
   selectedDevice: null,
   deviceMetadata: null,
   deviceEvents: [],
-  deviceTelemetry: []
+  deviceTelemetry: [],
+  notifications: []
 };

@@ -1,5 +1,5 @@
 import { DeviceService } from './../../services/device.service';
-import { GetDevices, GetDevice, getDeviceMetaData, getDeviceEvents, UpdateDevice, updateDeviceMetadata, GetDeviceTelemetry } from './../../store/actions/device.actions';
+import { GetDevices, GetDevice, getDeviceMetaData, getDeviceEvents, UpdateDevice, updateDeviceMetadata, GetDeviceTelemetry, GetAllDeviceNotifications } from './../../store/actions/device.actions';
 import { IAppState } from './../../store/state/app.state';
 import { selectDeviceList, deviceMetadata, selectSelectedDevice } from './../../store/selectors/device.selector';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
@@ -32,13 +32,13 @@ export class DeviceListComponent implements OnInit {
     this._store.select(selectDeviceList).subscribe(res => {
       console.log(res);
     });
-    // this._store.dispatch(new GetDevices());
-    // this.device.userName = jwt_decode(sessionStorage.getItem("msal.idtoken")).given_name.toLowerCase();
+
     this._store.dispatch(new GetDevices());
     this._store.select(selectDeviceList).subscribe(
       deviceList => {
         this.deviceList = [];
         this.deviceList = deviceList;
+        this._store.dispatch(new GetAllDeviceNotifications(this.deviceList));
 
       }
     );

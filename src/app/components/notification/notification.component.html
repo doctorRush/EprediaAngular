@@ -1,0 +1,47 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <button class="btn btn-outline btn-lg btn-outline-danger mr-3" *ngIf="(eventList| notifFilter: '0').length > 0"   [ngClass]="{'active': activeTab == 0}"  (click)="activeTab=0">Fault</button>
+        <button class="btn btn-outline btn-lg btn-outline-secondary mr-3" *ngIf="(eventList| notifFilter: '1').length > 0" [ngClass]="{'active': activeTab == 1}" (click)="activeTab=1">Warning</button>
+        <button class="btn btn-outline btn-lg btn-outline-primary mr-3" *ngIf="(eventList| notifFilter: '2').length > 0" [ngClass]="{'active': activeTab == 2}" (click)="activeTab=2">Activity</button>
+      </div>
+      <div class="row mt-2">
+
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'HOME.EVENT_TYPE' | translate }}</th>
+              <th scope="col">{{ 'HOME.DESCRIPTION' | translate }}</th>
+              <th scope="col">{{ 'HOME.COMMERCIAL_REGION' | translate }}</th>
+              <th scope="col">{{ 'HOME.SERVICE_REGION' | translate }}</th>
+              <th scope="col">{{ 'HOME.ERROR_CODE' | translate }}</th>
+              <th scope="col">{{ 'HOME.TIMESTAMP' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of (eventList | notifFilter: activeTab)" id="deviceEvent"
+             >
+              <td>{{ data.eventParameters.event_type || '-' }}</td>
+              <td>{{ data.eventParameters.description  || '-' }}</td>
+              <td>{{ data.eventParameters.commercial_region || '-' }}</td>
+              <td>{{ data.eventParameters.service_region || '-' }}</td>
+              <td>{{ data.eventParameters.error_code  || '-' }}</td>
+              <td>{{ data.timestamp  | date:'medium' || '-' }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card m-3 p-3" *ngIf="eventList.length==0">
+          <div>{{ 'HOME.EVENT_NOT_AVAL' | translate }}</div>
+
+          </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

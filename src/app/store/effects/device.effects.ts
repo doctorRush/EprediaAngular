@@ -12,7 +12,9 @@ import {
   updateDeviceEventsFail,
   UpdateDeviceTelemetry,
   UpdateDeviceTelemetrySuccess,
-  UpdateDeviceTelemetryFail
+  UpdateDeviceTelemetryFail,
+  GetAllDeviceNotifications,
+  GetAllDeviceNotificationsSuccess
 } from './../actions/device.actions';
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
@@ -253,4 +255,28 @@ updateDeviceTelemetry$ = this._actions$.pipe(
     )),
     switchMap((device: DeviceTelemetry[]) => of(new GetDeviceTelemetrySuccess(device)))
   );
+
+
+  /**
+   * @description: Get device Notifications
+   */
+    /**
+ * @description: get Device Events
+ */
+@Effect()
+getDeviceNotifications$ = this._actions$.pipe(
+  ofType<GetAllDeviceNotifications>(EDeviceActions.GetAllDeviceNotifications),
+  map(action => {
+    console.log(action);
+    return action.payload
+  }),
+  switchMap((action) => this._deviceService.getDeviceNotifications(action).pipe(
+    map(device => {
+      return device;
+    })
+  )),
+  switchMap((device: any) => {
+    return of(new GetAllDeviceNotificationsSuccess(device));
+  })
+);
 }

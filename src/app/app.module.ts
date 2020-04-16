@@ -25,6 +25,7 @@ import { DeviceDetailsComponent } from './components/device-details/device-detai
 
 import { DevicesComponent } from './containers/devices/devices/devices.component';
 import {DateFormatPipe} from '../core/pipe/date-format.pipe';
+import { NotifFilterPipe } from '../core/pipe/notif-filter.pipe';
 import { DeviceComponent } from './containers/device/device/device.component';
 import { DeviceMetadataComponent } from './components/device-metadata/device-metadata.component';
 import { DeviceEventsComponent } from './components/device-events/device-events.component';
@@ -38,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
 import { PlotlyViaWindowModule } from 'angular-plotly.js';
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -54,7 +56,9 @@ PlotlyModule.plotlyjs = PlotlyJS;
     ChartComponent,
     LoginComponent,
     DateFormatPipe,
-    ChartDemoComponent
+    NotifFilterPipe,
+    ChartDemoComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

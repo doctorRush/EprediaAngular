@@ -29,7 +29,11 @@ export enum EDeviceActions {
   updateDeviceMetadataFail = '[Device Metadata Fail] update device metadata Fail',
   updateDeviceEvents = '[ Device Events ] update device events',
   updateDeviceEventsSuccess = '[ Device Events Success] update device events success',
-  updateDeviceEventsFail = '[ Device Events Fail] update device events Fail'
+  updateDeviceEventsFail = '[ Device Events Fail] update device events Fail',
+
+  GetAllDeviceNotifications = '[Device Notifications] Get device notifications',
+  GetAllDeviceNotificationsSuccess = '[Device Notifications success] Get device notifications success',
+  // GetAllDeviceNotifications = '[Device Notifications] Get device notifications',
 
 }
 
@@ -153,6 +157,19 @@ export class UpdateDeviceTelemetryFail implements Action {
   public readonly type = EDeviceActions.UpdateDeviceTelemetryFail;
 
 }
+
+// notifications actions
+export class GetAllDeviceNotifications implements Action {
+  public readonly type = EDeviceActions.GetAllDeviceNotifications;
+  constructor(public payload: IDevice[]) { }
+
+}
+export class GetAllDeviceNotificationsSuccess implements Action {
+  public readonly type = EDeviceActions.GetAllDeviceNotificationsSuccess;
+  constructor(public payload: IDeviceEvents[]) { }
+
+}
+
 export type DeviceActions = GetDevices | GetDevicesSuccess | GetDevice
   | GetDeviceSuccess | getDeviceMetaData
   | GetDeviceMetaDataSuccess
@@ -172,4 +189,6 @@ export type DeviceActions = GetDevices | GetDevicesSuccess | GetDevice
   | updateDeviceEventsFail
   | UpdateDeviceTelemetry
   | UpdateDeviceTelemetryFail
-  |UpdateDeviceTelemetrySuccess;
+  |UpdateDeviceTelemetrySuccess
+  | GetAllDeviceNotifications
+  | GetAllDeviceNotificationsSuccess;

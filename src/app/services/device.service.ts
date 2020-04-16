@@ -2,23 +2,21 @@ import { IDeviceEvents } from './../models/deviceEvents.interface';
 import { IDevice } from './../models/device.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, forkJoin } from 'rxjs';
 import { catchError } from 'rxjs/operators'
 import { map } from 'rxjs/operators';
 import { IDeviceHttp } from '../models/http-models/device-http.interface';
 import { DeviceTelemetry } from '../models/device-telemetry';
-import { environment } from 'src/environments/environment';
-import { userInfo } from 'os';
 import * as jwt_decode from 'jwt-decode';
 @Injectable()
 export class DeviceService {
+
 
   selectedDeviceId: number;
   userName = sessionStorage.getItem("msal.idtoken") ? jwt_decode(sessionStorage.getItem('msal.idtoken')).given_name.toLowerCase() : "naman";
 
   private deviceMeetadataUrl = 'https://cosmos-db-api-1584105173809.azurewebsites.net/epredia/v1/1/metadata';
   devices: any = [];
-
 
   // console.log('connecting to server');
   constructor(private http: HttpClient) {
@@ -60,7 +58,7 @@ export class DeviceService {
     const url = 'https://epredia-cosmosdb-apis.azurewebsites.net/api/getDeviceEvents';
     return this.http.get(url, { headers: header }).pipe(
       map((res: any) => res.deviceEvents.messages),
-      catchError(this.handleError)
+      catchError(() => [])
     );
 
   }
@@ -127,27 +125,33 @@ export class DeviceService {
 
   }
 
-  getPressureChamber():Observable<any> {
+  getDeviceNotifications(action: IDevice[]): Observable<IDeviceEvents[][]> {
+
+    const obsList$ = action.map(e => this.getDeviceEvents('' + e._id));
+    return forkJoin(obsList$);
+  }
+
+  getPressureChamber(): Observable<any> {
 
     const url = '../../assets/json/pressure_chamber.json';
     return this.http.get(url);
   }
-  getSpecificGravity():Observable<any> {
+  getSpecificGravity(): Observable<any> {
 
     const url = '../../assets/json/specific_gravity.json';
     return this.http.get(url);
   }
-  getTempratureFluid():Observable<any> {
+  getTempratureFluid(): Observable<any> {
 
     const url = '../../assets/json/temperature_chamber_fluid_2 (1).json';
     return this.http.get(url);
   }
-  getTempWaxBath1():Observable<any> {
+  getTempWaxBath1(): Observable<any> {
 
     const url = '../../assets/json/temperature_waxbath_fluid_1.json';
     return this.http.get(url);
   }
-  getTempWaxBath3():Observable<any> {
+  getTempWaxBath3(): Observable<any> {
 
     const url = '../../assets/json/temperature_waxbath_fluid_3.json';
     return this.http.get(url);

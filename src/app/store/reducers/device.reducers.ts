@@ -80,6 +80,13 @@ export const deviceReducers= (
       }
     }
 
+    case EDeviceActions.GetAllDeviceNotificationsSuccess: {
+      return {
+        ...state,
+        notifications: action.payload
+      }
+    }
+
     default:
       return state;
   }
