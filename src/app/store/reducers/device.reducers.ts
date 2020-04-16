@@ -2,7 +2,7 @@ import { EDeviceActions } from './../actions/device.actions';
 import { DeviceActions } from '../actions/device.actions';
 import { initialDeviceState, IDeviceState } from '../state/device.state';
 
-export const deviceReducers= (
+export const deviceReducers = (
   state = initialDeviceState,
   action: DeviceActions
 ): IDeviceState => {
@@ -84,6 +84,14 @@ export const deviceReducers= (
       return {
         ...state,
         notifications: action.payload
+      }
+    }
+    case EDeviceActions.GetAllDeviceNotificationsSuccess: {
+
+      const data = [...state.notifications, ...action.payload];
+      return {
+        ...state,
+        notifications: data
       }
     }
 

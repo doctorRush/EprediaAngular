@@ -125,11 +125,13 @@ export class DeviceService {
 
   }
 
-  getDeviceNotifications(action: IDevice[]): Observable<IDeviceEvents[][]> {
+  getDeviceNotifications(): Observable<any> {
 
-    const obsList$ = action.map(e => this.getDeviceEvents('' + e._id));
-    return forkJoin(obsList$);
+    const url = 'https://epredia-cosmosdb-apis.azurewebsites.net/api/getAllDetails';
+    return this.http.get(url, { headers: new HttpHeaders().set('x-ms-client-principal-id', this.userName) });
+
   }
+
 
   getPressureChamber(): Observable<any> {
 

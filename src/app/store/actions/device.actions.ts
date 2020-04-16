@@ -33,7 +33,7 @@ export enum EDeviceActions {
 
   GetAllDeviceNotifications = '[Device Notifications] Get device notifications',
   GetAllDeviceNotificationsSuccess = '[Device Notifications success] Get device notifications success',
-  // GetAllDeviceNotifications = '[Device Notifications] Get device notifications',
+  UpdateAllDeviceNotifications = '[Device Notifications update] Update device notifications',
 
 }
 
@@ -169,6 +169,12 @@ export class GetAllDeviceNotificationsSuccess implements Action {
   constructor(public payload: IDeviceEvents[]) { }
 
 }
+export class UpdateAllDeviceNotifications implements Action {
+  public readonly type = EDeviceActions.UpdateAllDeviceNotifications;
+  constructor(public payload: any[]) { }
+
+}
+
 
 export type DeviceActions = GetDevices | GetDevicesSuccess | GetDevice
   | GetDeviceSuccess | getDeviceMetaData
@@ -191,4 +197,5 @@ export type DeviceActions = GetDevices | GetDevicesSuccess | GetDevice
   | UpdateDeviceTelemetryFail
   |UpdateDeviceTelemetrySuccess
   | GetAllDeviceNotifications
-  | GetAllDeviceNotificationsSuccess;
+  | GetAllDeviceNotificationsSuccess
+ | UpdateAllDeviceNotifications;

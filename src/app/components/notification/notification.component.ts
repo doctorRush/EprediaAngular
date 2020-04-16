@@ -13,6 +13,7 @@ export class NotificationComponent implements OnInit {
 
   eventList: IDeviceEvents[] = [];
   activeTab = 0;
+  viewMode= 'fault';
   constructor(private store: Store<IAppState>) { }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
 import { IDeviceEvents } from './../models/deviceEvents.interface';
-import { getDeviceEvents, updateDeviceEvents, UpdateDeviceTelemetry } from './../store/actions/device.actions';
+import { getDeviceEvents, updateDeviceEvents, UpdateDeviceTelemetry, UpdateAllDeviceNotifications } from './../store/actions/device.actions';
 import { IDevice } from './../models/device.interface';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -57,27 +57,38 @@ export class MainComponent implements OnInit {
         return console.error(err.toString());
       });
 
-      connection.on('deviceDetails', (data: any) => {
+      connection.on('deviceDetailsUpdated', (data: any) => {
         this._store.dispatch(new UpdateDevice(data[0].devicesInfo));
       });
 
-      connection.on('deviceMetadata', (data: any) => {
+      connection.on('deviceMetadataUpdated', (data: any) => {
 
-        if (data[0].request ? data[0].request == 'senddata' : false) {
-
-          this._store.dispatch(new updateDeviceEvents(data));
-          // this.notifList.push(data);
-          const evList = [...this.notifList];
-          evList.push(data);
-          this.notifList = evList;
-
-        } else {
-          console.log('metadata update recieved via device metadata---------------------------------------------------------------------');
-          this._store.dispatch(new updateDeviceMetadata(data));
-        }
+        console.log('metadata update recieved via device metadata---------------------------------------------------------------------');
+        this._store.dispatch(new updateDeviceMetadata(data));
 
       });
-      connection.on('deviceTelemetry', (data: any) => {
+      connection.on('deviceEventsUpdated',(data: any) => {
+
+        console.log(data);
+
+        this._store.dispatch(new updateDeviceEvents(data));
+
+        this._store.dispatch(new UpdateAllDeviceNotifications(data));
+        const evList = [...this.notifList];
+        evList.push(data);
+        this.notifList = evList;
+
+      });
+      connection.on('deviceStatusUpdated',(data: any) => {
+        // this._store.dispatch(new updateDeviceEvents(data));
+        this._store.dispatch(new UpdateAllDeviceNotifications(data));
+
+        const evList = [...this.notifList];
+        evList.push(data);
+        this.notifList = evList;
+
+      });
+      connection.on('deviceTelemetryUpdated', (data: any) => {
 
         console.log(data);
         this._store.dispatch(new UpdateDeviceTelemetry(data));

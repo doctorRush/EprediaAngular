@@ -1,11 +1,13 @@
-
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row">
     <div class="col-12">
       <div class="row">
-        <button class="btn btn-outline btn-lg btn-outline-danger mr-3" *ngIf="(eventList| notifFilter: '0').length > 0"   [ngClass]="{'active': activeTab == 0}"  (click)="activeTab=0">Fault</button>
-        <button class="btn btn-outline btn-lg btn-outline-secondary mr-3" *ngIf="(eventList| notifFilter: '1').length > 0" [ngClass]="{'active': activeTab == 1}" (click)="activeTab=1">Warning</button>
-        <button class="btn btn-outline btn-lg btn-outline-primary mr-3" *ngIf="(eventList| notifFilter: '2').length > 0" [ngClass]="{'active': activeTab == 2}" (click)="activeTab=2">Activity</button>
+        <button class="btn btn-outline btn-lg btn-outline-danger mr-3" [ngClass]="{'active': activeTab == 0}"
+          (click)="activeTab=0">Fault</button>
+        <button class="btn btn-outline btn-lg btn-outline-secondary mr-3" [ngClass]="{'active': activeTab == 1}"
+          (click)="activeTab=1">Warning</button>
+        <button class="btn btn-outline btn-lg btn-outline-primary mr-3" [ngClass]="{'active': activeTab == 2}"
+          (click)="activeTab=2">Activity</button>
       </div>
       <div class="row mt-2">
 
@@ -22,8 +24,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of (eventList | notifFilter: activeTab)" id="deviceEvent"
-             >
+            <tr *ngFor="let data of (eventList | notifFilter: activeTab)" id="deviceEvent">
               <td>{{ data.eventParameters.event_type || '-' }}</td>
               <td>{{ data.eventParameters.description  || '-' }}</td>
               <td>{{ data.eventParameters.commercial_region || '-' }}</td>
@@ -37,11 +38,75 @@
         <div class="card m-3 p-3" *ngIf="eventList.length==0">
           <div>{{ 'HOME.EVENT_NOT_AVAL' | translate }}</div>
 
-          </div>
+        </div>
 
 
 
       </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- notification  integration-->
+<ul class="nav nav-pills">
+  <li [class.active]="activeTab == 0"><button class="btn btn-danger btn-sm ml-2" (click)="activeTab = 0"><i
+        class="fa fa-exclamation" aria-hidden="true"></i>fault</button></li>
+  <li [class.active]="activeTab == 1"><button class="btn btn-primary btn-sm ml-2"
+      (click)="activeTab = 1"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>warning</button></li>
+  <li [class.active]="activeTab == 2"><button class="btn btn-info btn-sm ml-2"
+      (click)="activeTab = 2"><i class="fa fa-exchange" aria-hidden="true"></i>Activity</button></li>
+</ul>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card mt-3 p-3">
+        <table class="table table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Warning </th>
+              <th scope="col">Time</th>
+              <th scope="col">Discription</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of ( eventList | notifFilter: activeTab)">
+              <td>{{ data.eventParameters.event_type || '-' }}</td>
+              <td>{{ data.timestamp  | date:'short' || '-' }}</td>
+              <td>{{ data.eventParameters.description  || '-' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div  class="col-md-6 offset-md-1">
+
+      <div *ngIf="activeTab == 0" >
+        <div class="card mt-3 p-3">
+        <strong class="mb-2">Description</strong>
+          <p *ngFor="let data of ( eventList | notifFilter: 0)" >{{ data.eventParameters.description  || '-' }}</p>
+        </div>
+      </div>
+      <div *ngIf="activeTab == 1">
+        <div class="card mt-3 p-3">
+          <strong class="mb-2">Description</strong>
+          <p *ngFor="let data of ( eventList | notifFilter: 1)" >{{ data.eventParameters.description  || '-' }}</p>
+
+        </div>
+      </div>
+      <div *ngIf="activeTab == 2">
+        <div class="card mt-3 p-3">
+          <strong class="mb-2">Description</strong>
+          <p *ngFor="let data of ( eventList | notifFilter: 2)" >{{ data.eventParameters.description  || '-' }}</p>
+
+        </div>
+      </div>
+      <!-- <div *ngSwitchDefault>
+        <div class="card mt-3 p-3">
+          <h5>No Data Available</h5>
+        </div>
+      </div> -->
     </div>
   </div>
 </div>

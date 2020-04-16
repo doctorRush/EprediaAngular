@@ -86,21 +86,20 @@
 
 
         <table class="table table-hover">
-          <thead class="thead-dark">
+          <!-- <thead class="thead-dark">
             <tr>
               <th scope="col">{{ 'HOME.EVENT_TYPE' | translate }}</th>
               <th scope="col">{{ 'HOME.DESCRIPTION' | translate }}</th>
               <th scope="col">{{ 'HOME.ERROR_CODE' | translate }}</th>
               <th scope="col">{{ 'HOME.TIMESTAMP' | translate }}</th>
             </tr>
-          </thead>
+          </thead> -->
           <tbody>
-            <!-- <tr *ngFor="let data of notifList" id="deviceEvent">
+            <tr *ngFor="let data of notifList">
               <td>{{ data.eventParameters.event_type || '-' }}</td>
+              <td>{{ data.timestamp  | date:'short' || '-' }}</td>
               <td>{{ data.eventParameters.description  || '-' }}</td>
-              <td>{{ data.eventParameters.error_code  || '-' }}</td>
-              <td>{{ data.timestamp  | date:'medium' || '-' }}</td>
-            </tr> -->
+            </tr>
           </tbody>
         </table>
 

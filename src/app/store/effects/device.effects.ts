@@ -266,11 +266,7 @@ updateDeviceTelemetry$ = this._actions$.pipe(
 @Effect()
 getDeviceNotifications$ = this._actions$.pipe(
   ofType<GetAllDeviceNotifications>(EDeviceActions.GetAllDeviceNotifications),
-  map(action => {
-    console.log(action);
-    return action.payload
-  }),
-  switchMap((action) => this._deviceService.getDeviceNotifications(action).pipe(
+  switchMap((action) => this._deviceService.getDeviceNotifications().pipe(
     map(device => {
       return device;
     })
