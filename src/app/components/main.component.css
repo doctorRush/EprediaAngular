@@ -33,3 +33,8 @@ text-align: center;
   height: 1.5rem;
   font-weight: 700;
 }
+.notif-dropdown{
+  height: 38rem !important;
+    overflow-y: auto;
+    min-width: 38rem;
+}

@@ -161,7 +161,6 @@ export class UpdateDeviceTelemetryFail implements Action {
 // notifications actions
 export class GetAllDeviceNotifications implements Action {
   public readonly type = EDeviceActions.GetAllDeviceNotifications;
-  constructor(public payload: IDevice[]) { }
 
 }
 export class GetAllDeviceNotificationsSuccess implements Action {

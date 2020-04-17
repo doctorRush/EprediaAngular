@@ -38,7 +38,7 @@ export class DeviceListComponent implements OnInit {
       deviceList => {
         this.deviceList = [];
         this.deviceList = deviceList;
-        this._store.dispatch(new GetAllDeviceNotifications(this.deviceList));
+        // this._store.dispatch(new GetAllDeviceNotifications());
 
       }
     );

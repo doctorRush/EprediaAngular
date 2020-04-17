@@ -8,9 +8,9 @@ import { map } from 'rxjs/operators';
 import { IDeviceHttp } from '../models/http-models/device-http.interface';
 import { DeviceTelemetry } from '../models/device-telemetry';
 import * as jwt_decode from 'jwt-decode';
+
 @Injectable()
 export class DeviceService {
-
 
   selectedDeviceId: number;
   userName = sessionStorage.getItem("msal.idtoken") ? jwt_decode(sessionStorage.getItem('msal.idtoken')).given_name.toLowerCase() : "naman";
@@ -25,12 +25,12 @@ export class DeviceService {
 
   getDevices(): Observable<any> {
 
-    const _deviceUrl = 'https://epredia-cosmosdb-apis.azurewebsites.net/api/getUserDeviceDetails'
+    const _deviceUrl = 'https://epredia-cosmosdb-apis.azurewebsites.net/api/getUserDeviceDetails';
     // const _deviceUrl = 'https://epredia-cosmosdb-apis.azurewebsites.net/api/'+ this.userName+'/devices';
     // return this.http.get<IDeviceHttp>(_deviceUrl).pipe(
     return this.http.get<IDeviceHttp>(_deviceUrl, { headers: new HttpHeaders().set('x-ms-client-principal-id', this.userName) }).pipe(
       map((res: any) => {
-        return res.deviceInfo
+        return res.deviceInfo;
       }),
       catchError(this.handleError));
 
@@ -121,7 +121,7 @@ export class DeviceService {
 
     const url = 'https://epredia-cosmosdb-apis.azurewebsites.net/api/negotiate';
     // const url = 'https://epredia-azure-functions-epredia.azurewebsites.net/api/negotiate';
-    return this.http.post(url, {}, { headers: new HttpHeaders().set('x-ms-client-principal-id', this.userName) });
+    return this.http.get(url, { headers: new HttpHeaders().set('x-ms-client-principal-id', this.userName) });
 
   }
 
@@ -138,6 +138,7 @@ export class DeviceService {
     const url = '../../assets/json/pressure_chamber.json';
     return this.http.get(url);
   }
+
   getSpecificGravity(): Observable<any> {
 
     const url = '../../assets/json/specific_gravity.json';

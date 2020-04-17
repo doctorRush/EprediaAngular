@@ -1,5 +1,6 @@
+import { notifications } from './../store/selectors/device.selector';
 import { IDeviceEvents } from './../models/deviceEvents.interface';
-import { getDeviceEvents, updateDeviceEvents, UpdateDeviceTelemetry, UpdateAllDeviceNotifications } from './../store/actions/device.actions';
+import { getDeviceEvents, updateDeviceEvents, UpdateDeviceTelemetry, UpdateAllDeviceNotifications, GetAllDeviceNotifications } from './../store/actions/device.actions';
 import { IDevice } from './../models/device.interface';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -41,6 +42,15 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.userName = this.deviceService.userName;
+    this._store.dispatch(new GetAllDeviceNotifications());
+    this._store.select(notifications).subscribe(res=> {
+       // const evList = [...this.notifList];
+        // evList.push(data);
+        console.log(res);
+
+        this.notifList = [ ...this.notifList, ...res ];
+        console.log(this.notifList);
+    });
     this.deviceService.ConnectHubWithSignalR().subscribe(res => {
       const options = {
         accessTokenFactory: () => res.accessToken
@@ -74,9 +84,8 @@ export class MainComponent implements OnInit {
         this._store.dispatch(new updateDeviceEvents(data));
 
         this._store.dispatch(new UpdateAllDeviceNotifications(data));
-        const evList = [...this.notifList];
-        evList.push(data);
-        this.notifList = evList;
+
+
 
       });
       connection.on('deviceStatusUpdated',(data: any) => {

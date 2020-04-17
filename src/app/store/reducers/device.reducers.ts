@@ -86,7 +86,7 @@ export const deviceReducers = (
         notifications: action.payload
       }
     }
-    case EDeviceActions.GetAllDeviceNotificationsSuccess: {
+    case EDeviceActions.UpdateAllDeviceNotifications: {
 
       const data = [...state.notifications, ...action.payload];
       return {

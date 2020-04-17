@@ -82,23 +82,16 @@
     <div class="btn-group dropleft">
       <i class="fa fa-bell-o text-white" style="font-size: 2rem;" aria-hidden="true" data-toggle="dropdown"></i>
       <span class="count"> {{notifList.length}}</span>
-      <div class="dropdown-menu" style="min-width: 38rem;">
+      <div class="dropdown-menu notif-dropdown">
 
 
         <table class="table table-hover">
-          <!-- <thead class="thead-dark">
-            <tr>
-              <th scope="col">{{ 'HOME.EVENT_TYPE' | translate }}</th>
-              <th scope="col">{{ 'HOME.DESCRIPTION' | translate }}</th>
-              <th scope="col">{{ 'HOME.ERROR_CODE' | translate }}</th>
-              <th scope="col">{{ 'HOME.TIMESTAMP' | translate }}</th>
-            </tr>
-          </thead> -->
-          <tbody>
+          <tbody *ngIf="notifList.length > 0" >
             <tr *ngFor="let data of notifList">
-              <td>{{ data.eventParameters.event_type || '-' }}</td>
-              <td>{{ data.timestamp  | date:'short' || '-' }}</td>
-              <td>{{ data.eventParameters.description  || '-' }}</td>
+              <td>{{data?.deviceId}}</td>
+              <td>{{ data?.eventParameters?.event_type || '-' }}</td>
+              <td>{{ data?.timestamp  | date:'short' || '-' }}</td>
+              <td>{{ data?.eventParameters?.description  || '-' }}</td>
             </tr>
           </tbody>
         </table>
