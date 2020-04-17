@@ -23,7 +23,8 @@ export class NotificationComponent implements OnInit {
 
       this.store.select(notifications).subscribe(
         res => {
-          this.eventList = []
+          this.eventList = [];
+          if(device) {
 
           const notif = [];
           for (const i of res) {
@@ -32,7 +33,9 @@ export class NotificationComponent implements OnInit {
             }
           }
           this.eventList = notif;
-          this.calculateCount(res);
+          // this.calculateCount(res);
+        }
+
         });
     }
     );

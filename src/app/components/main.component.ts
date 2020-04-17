@@ -23,16 +23,17 @@ export class MainComponent implements OnInit {
   isActive = 0;
   selectDevice = null;
   devicemetadata: any;
+  countList: {name:string, count: any}[];
   isConnecting = true;
   userInfo: string;
-  notifList: IDeviceEvents[]= [];
+  notifList: IDeviceEvents[] = [];
   constructor(
     public translate: TranslateService,
     private deviceService: DeviceService,
     private _store: Store<IAppState>,
     private _router: Router,
     private msalService: MsalService
-    ) {
+  ) {
     translate.setDefaultLang('en');
     translate.addLangs(['fr', 'es'])
     const browserLang = translate.getBrowserLang();
@@ -43,13 +44,12 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.userName = this.deviceService.userName;
     this._store.dispatch(new GetAllDeviceNotifications());
-    this._store.select(notifications).subscribe(res=> {
-       // const evList = [...this.notifList];
-        // evList.push(data);
-        console.log(res);
+    this._store.select(notifications).subscribe(res => {
+      console.log(res);
 
-        this.notifList = [ ...this.notifList, ...res ];
-        console.log(this.notifList);
+      this.notifList = [...this.notifList, ...res];
+      console.log(this.notifList);
+      this.calculateCount(this.notifList);
     });
     this.deviceService.ConnectHubWithSignalR().subscribe(res => {
       const options = {
@@ -60,7 +60,7 @@ export class MainComponent implements OnInit {
         .withUrl(res.url, options)
         .build();
 
-        connection.start().then(() => {
+      connection.start().then(() => {
         console.log('Connected!');
         this.isConnecting = false;
       }).catch((err) => {
@@ -77,7 +77,7 @@ export class MainComponent implements OnInit {
         this._store.dispatch(new updateDeviceMetadata(data));
 
       });
-      connection.on('deviceEventsUpdated',(data: any) => {
+      connection.on('deviceEventsUpdated', (data: any) => {
 
         console.log(data);
 
@@ -88,13 +88,10 @@ export class MainComponent implements OnInit {
 
 
       });
-      connection.on('deviceStatusUpdated',(data: any) => {
+      connection.on('deviceStatusUpdated', (data: any) => {
         // this._store.dispatch(new updateDeviceEvents(data));
         this._store.dispatch(new UpdateAllDeviceNotifications(data));
 
-        const evList = [...this.notifList];
-        evList.push(data);
-        this.notifList = evList;
 
       });
       connection.on('deviceTelemetryUpdated', (data: any) => {
@@ -107,6 +104,25 @@ export class MainComponent implements OnInit {
     });
 
 
+  }
+  calculateCount(notifList: IDeviceEvents[]) {
+    const countList: {name:string, count: any}[] = [];
+
+    for (const i of notifList) {
+
+      // if(notifList.length )
+      const notif = countList.filter( e => e.name == i.eventParameters.description);
+      if(notif.length <= 0) {
+
+        const count = notifList.filter( el => el.eventParameters.description == i.eventParameters.description );
+        const countObj = {
+          name: i.eventParameters.description,
+          count: count.length
+        };
+        countList.push(countObj);
+      }
+    }
+    this.countList = countList;
   }
   dummyFunction() {
     console.log('calling update  metadata  with dummy data');
