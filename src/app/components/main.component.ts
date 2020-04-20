@@ -1,6 +1,7 @@
 import { notifications } from './../store/selectors/device.selector';
 import { IDeviceEvents } from './../models/deviceEvents.interface';
-import { getDeviceEvents, updateDeviceEvents, UpdateDeviceTelemetry, UpdateAllDeviceNotifications, GetAllDeviceNotifications } from './../store/actions/device.actions';
+import { getDeviceEvents,
+   updateDeviceEvents, UpdateDeviceTelemetry, UpdateAllDeviceNotifications, GetAllDeviceNotifications } from './../store/actions/device.actions';
 import { IDevice } from './../models/device.interface';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -23,7 +24,7 @@ export class MainComponent implements OnInit {
   isActive = 0;
   selectDevice = null;
   devicemetadata: any;
-  countList: {name:string, count: any}[];
+  countList: {name:string, count: any,type: number}[]; // type: 0=> Fault, type: 1 => Warning, type:2 => Activity
   isConnecting = true;
   userInfo: string;
   notifList: IDeviceEvents[] = [];
@@ -47,7 +48,9 @@ export class MainComponent implements OnInit {
     this._store.select(notifications).subscribe(res => {
       console.log(res);
 
-      this.notifList = [...this.notifList, ...res];
+      this.notifList = [];
+      this.notifList = res;
+      // this.notifList = [...this.notifList, ...res];
       console.log(this.notifList);
       this.calculateCount(this.notifList);
     });
@@ -106,7 +109,7 @@ export class MainComponent implements OnInit {
 
   }
   calculateCount(notifList: IDeviceEvents[]) {
-    const countList: {name:string, count: any}[] = [];
+    const countList: {name:string, count: any, type: number}[] = [];
 
     for (const i of notifList) {
 
@@ -117,12 +120,26 @@ export class MainComponent implements OnInit {
         const count = notifList.filter( el => el.eventParameters.description == i.eventParameters.description );
         const countObj = {
           name: i.eventParameters.description,
-          count: count.length
+          count: count.length,
+          type: i.eventParameters.event_type == 'FAULT_STATUS'? 0 :
+                 i.eventParameters.event_type == 'WARNING_STATUS' ? 1 :
+                 2
         };
         countList.push(countObj);
       }
     }
+    console.log(countList);
+
     this.countList = countList;
+
+  }
+
+  getNotifList(feature: number ) {
+
+    if(this.countList.length < 1) {
+      return []
+    }
+    return this.countList.filter(e => e.count == feature);
   }
   dummyFunction() {
     console.log('calling update  metadata  with dummy data');

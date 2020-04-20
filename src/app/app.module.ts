@@ -25,6 +25,7 @@ import { DeviceDetailsComponent } from './components/device-details/device-detai
 
 import { DevicesComponent } from './containers/devices/devices/devices.component';
 import {DateFormatPipe} from '../core/pipe/date-format.pipe';
+import {NotifeTypePipe} from '../core/pipe/notife-type.pipe';
 import { NotifFilterPipe } from '../core/pipe/notif-filter.pipe';
 import { DeviceComponent } from './containers/device/device/device.component';
 import { DeviceMetadataComponent } from './components/device-metadata/device-metadata.component';
@@ -58,6 +59,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     DateFormatPipe,
     NotifFilterPipe,
     ChartDemoComponent,
+    NotifeTypePipe,
     NotificationComponent
   ],
   imports: [

@@ -121,20 +121,45 @@
           <app-device-metadata></app-device-metadata>
 
         </div>
-        <div class="col-4">
+        <div class="col-12">
           <div class="card">
             <div class="card-header">
               Notifications
             </div>
-            <div class="card-body">
-              <table class="table">
-                <tbody>
-                  <tr *ngFor="let item of countList" >
-                    <td>{{ item.name}}  ({{item.count}})</td>
-                  </tr>
+            <div class="card card-body">
+              <div class="row">
+                <div class="col-4" *ngIf="(countList| notifeType: 0).length > 0" >
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let item of (countList| notifeType: 0)" >
+                        <td>{{ item.name}}  ({{item.count}})</td>
+                      </tr>
 
-                </tbody>
-              </table>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-4" *ngIf="(countList| notifeType: 1).length > 0">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let item of (countList| notifeType: 1)" >
+                        <td>{{ item.name}}  ({{item.count}})</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-4" *ngIf="(countList| notifeType: 2).length > 0">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let item of (countList| notifeType: 2)" >
+                        <td>{{ item.name}}  ({{item.count}})</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
             </div>
           </div>
 

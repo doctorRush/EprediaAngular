@@ -38,3 +38,10 @@ text-align: center;
     overflow-y: auto;
     min-width: 38rem;
 }
+
+
+.card{
+  -webkit-box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27);
+-moz-box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27);
+box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27)
+}
