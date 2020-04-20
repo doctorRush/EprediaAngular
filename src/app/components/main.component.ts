@@ -24,6 +24,9 @@ export class MainComponent implements OnInit {
   isActive = 0;
   selectDevice = null;
   devicemetadata: any;
+  faultList: {name:string, count: any}[];
+  warningList: {name:string, count: any}[];
+  activityList: {name:string, count: any}[];
   countList: {name:string, count: any,type: number}[]; // type: 0=> Fault, type: 1 => Warning, type:2 => Activity
   isConnecting = true;
   userInfo: string;
@@ -111,6 +114,9 @@ export class MainComponent implements OnInit {
   calculateCount(notifList: IDeviceEvents[]) {
     const countList: {name:string, count: any, type: number}[] = [];
 
+    this.faultList = [];
+    this.warningList = [];
+    this.activityList = [];
     for (const i of notifList) {
 
       // if(notifList.length )
@@ -125,6 +131,11 @@ export class MainComponent implements OnInit {
                  i.eventParameters.event_type == 'WARNING_STATUS' ? 1 :
                  2
         };
+        switch(i.eventParameters.event_type){
+          case 'FAULT_STATUS':this.faultList.push({name: i.eventParameters.description, count: count.length});break;
+          case 'WARNING_STATUS':this.warningList.push({name: i.eventParameters.description, count: count.length});break;
+            case 'ACTIVITY_STATUS':this.activityList.push({name: i.eventParameters.description, count: count.length});break;
+        }
         countList.push(countObj);
       }
     }

@@ -128,30 +128,30 @@
             </div>
             <div class="card card-body">
               <div class="row">
-                <div class="col-4" *ngIf="(countList| notifeType: 0).length > 0" >
+                <div class="col-4" *ngIf="faultList.length > 0" >
                   <table class="table">
                     <tbody>
-                      <tr *ngFor="let item of (countList| notifeType: 0)" >
+                      <tr *ngFor="let item of faultList" >
                         <td>{{ item.name}}  ({{item.count}})</td>
                       </tr>
 
                     </tbody>
                   </table>
                 </div>
-                <div class="col-4" *ngIf="(countList| notifeType: 1).length > 0">
+                <div class="col-4" *ngIf="warningList.length > 0">
                   <table class="table">
                     <tbody>
-                      <tr *ngFor="let item of (countList| notifeType: 1)" >
+                      <tr *ngFor="let item of warningList" >
                         <td>{{ item.name}}  ({{item.count}})</td>
                       </tr>
 
                     </tbody>
                   </table>
                 </div>
-                <div class="col-4" *ngIf="(countList| notifeType: 2).length > 0">
+                <div class="col-4" *ngIf="activityList.length > 0">
                   <table class="table">
                     <tbody>
-                      <tr *ngFor="let item of (countList| notifeType: 2)" >
+                      <tr *ngFor="let item of activityList" >
                         <td>{{ item.name}}  ({{item.count}})</td>
                       </tr>
 
