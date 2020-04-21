@@ -1,12 +1,7 @@
 .device {
-    float:left;
-    margin: 5px 0;
-    padding: 5px 0;
-    width: 100%;
-cursor: pointer;
--webkit-box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27);
--moz-box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27);
-box-shadow: 1px 1px 6px 2px rgba(0,0,0,0.27)
+  padding: 5px;
+  width: 100%;
+  cursor: pointer;
 }
 
 .device:hover{

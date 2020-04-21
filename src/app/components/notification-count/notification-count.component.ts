@@ -25,9 +25,12 @@ export class NotificationCountComponent implements OnInit {
       this.store.select(notifications).subscribe(
         details => {
           this.eventList = [];
-          this.notificationsCount = { "ACTIVITY_STATUS": {}, "FAULT_STATUS": {}, "WARNING_STATUS": {} };
+          this.notificationsCount = {};
           details.forEach(detail => {
             if (device._id === detail.deviceId) {
+              if (!this.notificationsCount[detail.eventKey]) {
+                this.notificationsCount[detail.eventKey] = {};
+              }
               if (this.notificationsCount[detail.eventKey][detail.eventParameters.description]) {
                 this.notificationsCount[detail.eventKey][detail.eventParameters.description] += 1;
               } else {
