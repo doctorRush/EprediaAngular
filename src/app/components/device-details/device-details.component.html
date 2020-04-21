@@ -1,12 +1,28 @@
-
-<div class="container" *ngIf="device" id="deviceDetails">
-  <div class="card m-3 p-3">
-
-    <div>{{'HOME.DEVICE_ID' | translate}} :{{device._id}}   </div>
-    <div>{{'HOME.DEVICE_NAME' | translate }} :{{device.deviceName}}   </div>
-    <div>{{'HOME.SERIAL_NUMBER' | translate}} :{{device.serialNumber}}   </div>
-    <div>{{'HOME.SOFTWARE_VERSION' | translate}} :{{device.firmwareVersion}}   </div>
-    <div>{{'HOME.FIRM_VERSION' | translate}} :{{device.softwareVersion}}   </div>
-    <div>{{'HOME.STATUS' | translate}} :{{device.status}}   </div>
-  </div>
+<div class="card px-3 card-device-details" *ngIf="device" id="deviceDetails">
+  <table>
+    <tr>
+      <th>{{'HOME.DEVICE_ID' | translate}}</th>
+      <td>{{ device._id }}</td>
+    </tr>
+    <tr>
+      <th>{{'HOME.DEVICE_NAME' | translate}}</th>
+      <td>{{ device.deviceName }}</td>
+    </tr>
+    <tr>
+      <th>{{'HOME.SERIAL_NUMBER' | translate}}</th>
+      <td>{{ device.serialNumber }}</td>
+    </tr>
+    <tr>
+      <th>{{'HOME.SOFTWARE_VERSION' | translate}}</th>
+      <td>{{ device.softwareVersion }}</td>
+    </tr>
+    <tr>
+      <th>{{'HOME.FIRM_VERSION' | translate}}</th>
+      <td>{{ device.firmwareVersion }}</td>
+    </tr>
+    <tr>
+      <th>{{'HOME.STATUS' | translate}}</th>
+      <td>{{device.status}}</td>
+    </tr>
+  </table>
 </div>

@@ -40,6 +40,7 @@ import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
 import { PlotlyViaWindowModule } from 'angular-plotly.js';
 import { NotificationComponent } from './components/notification/notification.component';
+import { NotificationCountComponent } from './components/notification-count/notification-count.component';
 
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -58,7 +59,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     DateFormatPipe,
     NotifFilterPipe,
     ChartDemoComponent,
-    NotificationComponent
+    NotificationComponent,
+    NotificationCountComponent
   ],
   imports: [
     BrowserModule,

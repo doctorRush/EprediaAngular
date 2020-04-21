@@ -49,66 +49,32 @@
 
 <!-- notification  integration-->
 <ul class="nav nav-pills">
-  <li [class.active]="activeTab == 0"><button class="btn btn-outline-danger btn-sm  pr-4 mx-3" (click)="activeTab = 0"><i
-        class="fa fa-exclamation ml-3 mr-1" aria-hidden="true"></i>fault</button></li>
+  <li [class.active]="activeTab == 0"><button class="btn btn-outline-danger btn-sm  pr-4 mx-3"
+      (click)="activeTab = 0"><i class="fa fa-exclamation ml-3 mr-1" aria-hidden="true"></i>fault</button></li>
   <li [class.active]="activeTab == 1"><button class="btn btn-outline-primary btn-sm mx-3 pr-4 "
-      (click)="activeTab = 1"><i class="fa fa-exclamation-triangle ml-3 mr-1" aria-hidden="true"></i>warning</button></li>
-  <li [class.active]="activeTab == 2"><button class="btn btn-outline-info btn-sm mx-3 pr-4 "
-      (click)="activeTab = 2"><i class="fa fa-exchange ml-3 mr-1" aria-hidden="true"></i>Activity</button></li>
+      (click)="activeTab = 1"><i class="fa fa-exclamation-triangle ml-3 mr-1" aria-hidden="true"></i>warning</button>
+  </li>
+  <li [class.active]="activeTab == 2"><button class="btn btn-outline-info btn-sm mx-3 pr-4 " (click)="activeTab = 2"><i
+        class="fa fa-exchange ml-3 mr-1" aria-hidden="true"></i>Activity</button></li>
 </ul>
 
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-5">
-      <div class="card mt-3 p-3">
+      <div class="card mt-3 p-3 notification-container">
         <table class="table table-hover">
           <thead class="thead-light">
             <tr>
-              <th scope="col">Warning </th>
               <th scope="col">Time</th>
               <th scope="col">Discription</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let data of ( eventList | notifFilter: activeTab)">
-              <td>{{ data.eventParameters.event_type || '-' }}</td>
-              <td>{{ data.timestamp  | date:'short' || '-' }}</td>
+              <td>{{ data.timestamp  | date:'medium' || '-' }}</td>
               <td>{{ data.eventParameters.description  || '-' }}</td>
             </tr>
           </tbody>
         </table>
-      </div>
-    </div>
-    <div  class="col-md-6 offset-md-1">
-
-      <div *ngIf="activeTab == 0" >
-        <div class="card mt-3 p-3">
-        <strong class="mb-2">Description</strong>
-          <p *ngFor="let data of ( eventList | notifFilter: 0)" >{{ data.eventParameters.description  || '-' }}</p>
-        </div>
-      </div>
-      <div *ngIf="activeTab == 1">
-        <div class="card mt-3 p-3">
-          <strong class="mb-2">Description</strong>
-          <p *ngFor="let data of ( eventList | notifFilter: 1)" >{{ data.eventParameters.description  || '-' }}</p>
-
-        </div>
-      </div>
-      <div *ngIf="activeTab == 2">
-        <div class="card mt-3 p-3">
-          <strong class="mb-2">Description</strong>
-          <p *ngFor="let data of ( eventList | notifFilter: 2)" >{{ data.eventParameters.description  || '-' }}</p>
-
-        </div>
-      </div>
-<!--
-      <div class="col-12">
-        <div class="card m-3">
-
-
-        </div>
-      </div> -->
-    </div>
+    
   </div>
 </div>

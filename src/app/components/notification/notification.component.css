@@ -1,3 +1,8 @@
 .btn {
   font-size: 1.3rem;
 }
+
+.notification-container {
+  height: 20rem;
+  overflow-y: scroll;
+}

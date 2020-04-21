@@ -86,7 +86,7 @@
 
 
         <table class="table table-hover">
-          <tbody *ngIf="notifList.length > 0" >
+          <tbody *ngIf="notifList.length > 0">
             <tr *ngFor="let data of notifList">
               <td>{{data?.deviceId}}</td>
               <td>{{ data?.eventParameters?.event_type || '-' }}</td>
@@ -108,70 +108,48 @@
       <app-device-list (deviceSelected)="selectedDevice($event)"></app-device-list>
     </div>
     <div class="col-9">
-      <div class="row">
-
-
-        <div class="col-4">
-
+      <div class="row p-3">
+        <div class="col-6">
           <app-device-details [device]="selectDevice"></app-device-details>
         </div>
-        <div class="col-4">
-
-
+        <div class="col-6">
           <app-device-metadata></app-device-metadata>
-
         </div>
-        <div class="col-4">
-          <div class="card">
-            <div class="card-header">
-              Notifications
+      </div>
+      <div class="row p-3">
+        <div class="col-12">
+          <app-notification-count></app-notification-count>
+        </div>
+      </div>
+      <div class="row p-3">
+        <div class="col-12">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{ 'active': isActive == 0}" (click)="isActive=0" id="home-tab"
+                data-toggle="tab" role="tab" aria-controls="home" aria-selected="true">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{ 'active': isActive == 1}" (click)="isActive=1" id="notif-tab"
+                data-toggle="tab" role="tab" aria-controls="notif" aria-selected="true">Notification</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade" [ngClass]="{'show': isActive == 0, 'active': isActive == 0}" id="home"
+              role="tabpanel" aria-labelledby="home-tab">
+              <app-device-events></app-device-events>
             </div>
-            <div class="card-body">
-              <table class="table">
-                <tbody>
-                  <tr *ngFor="let item of countList" >
-                    <td>{{ item.name}}  ({{item.count}})</td>
-                  </tr>
-
-                </tbody>
-              </table>
+            <div class="tab-pane fade" [ngClass]="{'show': isActive == 1, 'active': isActive == 1}" id="notif"
+              role="tabpanel" aria-labelledby="notif-tab">
+              <app-notification></app-notification>
             </div>
           </div>
-
         </div>
       </div>
-      <div class="row mt-3">
-        <div class="col-12 p-0">
+      <div class="row p-3">
+        <div class="col-12">
           <app-chart></app-chart>
-
         </div>
       </div>
-
-    </div>
-  </div>
-  <div class="col-12">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{ 'active': isActive == 0}" (click)="isActive=0" id="home-tab" data-toggle="tab"
-          role="tab" aria-controls="home" aria-selected="true">Events</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{ 'active': isActive == 1}" (click)="isActive=1" id="notif-tab" data-toggle="tab"
-          role="tab" aria-controls="notif" aria-selected="true">Notification</a>
-      </li>
-
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade" [ngClass]="{'show': isActive == 0, 'active': isActive == 0}" id="home" role="tabpanel"
-        aria-labelledby="home-tab">
-        <app-device-events></app-device-events>
-      </div>
-
-      <div class="tab-pane fade" [ngClass]="{'show': isActive == 1, 'active': isActive == 1}" id="notif" role="tabpanel"
-        aria-labelledby="notif-tab">
-        <app-notification></app-notification>
-      </div>
-
     </div>
   </div>
 </div>

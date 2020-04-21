@@ -1,0 +1,35 @@
+.notification-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 44px;
+  font-weight: 400;
+  padding-left: 18px;
+  border: solid 1px #e1e1e1;
+}
+
+.notification-card-content {
+  display: flex;
+  border: 1px solid #e1e1e1;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.notification-card-column {
+  border: 1px solid #e1e1e1;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.notification-list {
+  width: 100%;
+}
+
+.notification-count {
+  color: #90979E;
+}
+
+.list-group-head {
+  font-weight: bold;
+}

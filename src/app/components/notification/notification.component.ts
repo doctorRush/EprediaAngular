@@ -15,7 +15,7 @@ export class NotificationComponent implements OnInit {
   eventList: IDeviceEvents[] = [];
   activeTab = 0;
   viewMode = 'fault';
-  countList: {name:string, count: any}[];
+  countList: { name: string, count: any }[];
   constructor(private store: Store<IAppState>) { }
 
   ngOnInit() {
@@ -24,17 +24,17 @@ export class NotificationComponent implements OnInit {
       this.store.select(notifications).subscribe(
         res => {
           this.eventList = [];
-          if(device) {
+          if (device) {
 
-          const notif = [];
-          for (const i of res) {
-            if (i.deviceId == device._id) {
-              notif.push(i);
+            const notif = [];
+            for (const i of res) {
+              if (i.deviceId == device._id) {
+                notif.push(i);
+              }
             }
+            this.eventList = notif;
+            // this.calculateCount(res);
           }
-          this.eventList = notif;
-          // this.calculateCount(res);
-        }
 
         });
     }
@@ -43,15 +43,15 @@ export class NotificationComponent implements OnInit {
 
   }
   calculateCount(notifList: IDeviceEvents[]) {
-    const countList: {name:string, count: any}[] = [];
+    const countList: { name: string, count: any }[] = [];
 
     for (const i of notifList) {
 
       // if(notifList.length )
-      const notif = countList.filter( e => e.name == i.eventParameters.description);
-      if(notif.length <= 0) {
+      const notif = countList.filter(e => e.name == i.eventParameters.description);
+      if (notif.length <= 0) {
 
-        const count = notifList.filter( el => el.eventParameters.description == i.eventParameters.description );
+        const count = notifList.filter(el => el.eventParameters.description == i.eventParameters.description);
         const countObj = {
           name: i.eventParameters.description,
           count: count.length

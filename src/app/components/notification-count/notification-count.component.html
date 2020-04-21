@@ -1,0 +1,11 @@
+<div *ngIf="eventList.length > 0">
+  <div class="notification-card-title"> Notifications</div>
+  <div class="notification-card-content">
+    <ul class="list-group notification-list" *ngFor="let notifications of notificationsCount | keyvalue">
+      <li class="list-group-item list-group-head">{{ notifications.key.replace('_', ' ') }}</li>
+      <li class="list-group-item" *ngFor="let notification of notifications.value | keyvalue">
+        {{ notification.key }} <span *ngIf="notification.value > 1" class="notification-count">({{ notification.value }})</span>
+      </li>
+    </ul>
+  </div>
+</div>

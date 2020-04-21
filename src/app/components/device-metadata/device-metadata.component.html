@@ -1,12 +1,24 @@
-<div class="container"  >
-  <div class="card m-3 p-3" *ngFor="let metadata of devicemetadata" id="deviceMetaData">
-
-
-
-    <div>{{ 'HOME.REQ_TYPE' | translate}} : {{ metadata.request }}</div>
-    <div>{{ 'HOME.CHAMBER_STATUS' | translate}} : {{ metadata.chamber_status }}</div>
-    <div>{{ 'HOME.PROTOCOL_NAME' | translate}} : {{ metadata.protocol_name || '-' }}</div>
-    <div>{{ 'HOME.REAGENT_NAME' | translate}} : {{ metadata.reagent_name || '-' }}</div>
-    <div>{{ 'HOME.TIMESTAMP' | translate}}: {{ metadata.timestamp | date:'medium' }}</div>
-
-  </div>
+<div class="card px-3 card-metadata" *ngFor="let metadata of devicemetadata" id="deviceMetaData">
+  <table>
+    <tr>
+      <th>{{ 'HOME.REQ_TYPE' | translate}}</th>
+      <td>{{ metadata.request }}</td>
+    </tr>
+    <tr>
+      <th>{{ 'HOME.CHAMBER_STATUS' | translate}}</th>
+      <td>{{ metadata.chamber_status }}</td>
+    </tr>
+    <tr>
+      <th>{{ 'HOME.PROTOCOL_NAME' | translate}}</th>
+      <td>{{ metadata.protocol_name }}</td>
+    </tr>
+    <tr>
+      <th>{{ 'HOME.REAGENT_NAME' | translate}}</th>
+      <td>{{ metadata.reagent_name }}</td>
+    </tr>
+    <tr>
+      <th>{{ 'HOME.TIMESTAMP' | translate}}</th>
+      <td>{{ metadata.timestamp | date:'medium' }}</td>
+    </tr>
+  </table>
+</div>
